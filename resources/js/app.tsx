@@ -5,8 +5,11 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { initializeTheme } from './hooks/use-appearance';
+import { trans } from './lib/trans';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Agence Travel Management';
+
+window.__ = trans;
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),

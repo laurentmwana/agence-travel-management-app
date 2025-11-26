@@ -27,6 +27,8 @@ export interface SharedData {
     quote: { message: string; author: string };
     auth: Auth;
     sidebarOpen: boolean;
+    flash: FlashMessage;
+    pathname: string;
     [key: string]: unknown;
 }
 
@@ -41,3 +43,25 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export type QueriesProps = {
+    query: {
+        dir?: 'asc' | 'desc';
+        sort?: string;
+        search?: string;
+        category_id?: string;
+        chat?: string;
+    };
+};
+
+export interface FlashMessage {
+    success?: string;
+    error?: string;
+    warning?: string;
+    info?: string;
+}
+
+export type TranslateFn = (
+    key: string,
+    params?: Record<string, number | string | boolean | null | undefined>,
+) => string;
