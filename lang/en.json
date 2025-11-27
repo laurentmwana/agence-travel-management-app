@@ -238,5 +238,12 @@
     "Web Server is Down": "Web Server is Down",
     "Whoops!": "Whoops!",
     "Yes": "Yes",
-    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account."
+    "You are receiving this email because we received a password reset request for your account.": "You are receiving this email because we received a password reset request for your account.",
+   
+    "toast.created.success": "Created successfully.",
+    "toast.created.error": "Creation failed.",
+    "toast.updated.success": "Updated successfully.",
+    "toast.updated.error": "Update failed.",
+    "toast.deleted.success": "Deleted successfully.",
+    "toast.deleted.error": "Deletion failed."
 }

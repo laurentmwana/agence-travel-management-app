@@ -238,5 +238,12 @@
     "Web Server is Down": "Le serveur Web est en panne",
     "Whoops!": "Oups !",
     "Yes": "Oui",
-    "You are receiving this email because we received a password reset request for your account.": "Vous recevez cet e-mail car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte."
+    "You are receiving this email because we received a password reset request for your account.": "Vous recevez cet e-mail car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.",
+
+    "toast.created.success": "Création réussie.",
+    "toast.created.error": "Échec de la création.",
+    "toast.updated.success": "Mise à jour réussie.",
+    "toast.updated.error": "Échec de la mise à jour.",
+    "toast.deleted.success": "Suppression réussie.",
+    "toast.deleted.error": "Échec de la suppression."
 }
