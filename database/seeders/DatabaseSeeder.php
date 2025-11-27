@@ -26,8 +26,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             DestinationSeeder::class,
+            ItinerarySeeder::class,
         ]);
-
-
     }
 }
