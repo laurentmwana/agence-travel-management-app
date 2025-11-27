@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum ItinararyTypeEnum: string
+enum ItineraryTypeEnum: string
 {
       use \App\Traits\EnumerateTrait;
 

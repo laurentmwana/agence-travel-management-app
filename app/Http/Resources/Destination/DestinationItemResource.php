@@ -14,6 +14,11 @@ class DestinationItemResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->resource->id,
+            'name' => $this->resource->name,
+            'created_at' => $this->resource->created_at,
+            'updated_at' => $this->resource->updated_at,
+        ];
     }
 }

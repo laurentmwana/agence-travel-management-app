@@ -10,7 +10,7 @@ class Itinerary extends Model
     use HasFactory;
 
     protected $fillable = [
-        'notes',
+        'note',
         'type',
         'is_scheduled',
         'available_seats',
@@ -18,7 +18,6 @@ class Itinerary extends Model
         'price_per_person',
         'distance_km',
         'start_at',
-        'type',
         'start_destination_id',
         'end_destination_id'
     ];

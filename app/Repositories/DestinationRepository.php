@@ -7,6 +7,10 @@ use App\Services\Eloquent\EloquentFilterData;
 
 class DestinationRepository
 {
+    use RepositoryTrait;
+
+    protected string $model = Destination::class;
+
     public function __construct(private EloquentFilterData $filter) {}
 
     public function findPaginated(array $filters, ?string $search = null)
@@ -18,10 +22,5 @@ class DestinationRepository
         }
 
         return $this->filter->orderFromRequest($builder, $filters, ['name', 'id'])->paginate();
-    }
-
-    public function findById(string $id)
-    {
-        return Destination::query()->find($id);
     }
 }

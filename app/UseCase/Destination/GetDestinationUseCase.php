@@ -22,6 +22,13 @@ class GetDestinationUseCase
         });
     }
 
+    public function findAll(array $columns = ['*'])
+    {
+        return DB::transaction(function () use ($columns) {
+            return $this->repository->findAll($columns);
+        });
+    }
+
     public function filters(array $filters, ?string $search = null)
     {
         return DB::transaction(function () use ($filters, $search) {
