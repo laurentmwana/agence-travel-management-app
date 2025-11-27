@@ -17,7 +17,7 @@ class ItinerarySeeder extends Seeder
         foreach (Destination::all() as $start) {
             foreach (Destination::query()->where('id', '!=', $start->id)->get() as $end) {
                 if ($start->id !== $end->id) {
-                    Itinerary::factory(2)->create([
+                    Itinerary::factory()->create([
                         'start_destination_id' => $start->id,
                         'end_destination_id' => $end->id,
                     ]);

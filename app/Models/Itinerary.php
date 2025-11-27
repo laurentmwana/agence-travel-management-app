@@ -31,4 +31,9 @@ class Itinerary extends Model
     {
         return $this->belongsTo(Destination::class, 'end_destination_id');
     }
+
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
 }
