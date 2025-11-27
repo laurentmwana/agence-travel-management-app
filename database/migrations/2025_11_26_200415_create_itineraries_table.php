@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\ItinararyTypeEnum;
+use App\Enums\ItineraryTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,14 +11,14 @@ return new class extends Migration
     {
         Schema::create('itineraries', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', ItinararyTypeEnum::toArray())->default(ItinararyTypeEnum::PLANE->value);
-            $table->integer('distance_km')->nullable();
+            $table->enum('type', ItineraryTypeEnum::toArray())->default(ItineraryTypeEnum::PLANE->value);
+            $table->integer('distance_km');
             $table->decimal('price_per_person', 10, 2);
             $table->decimal('price_per_seat', 10, 2);
-            $table->integer('available_seats')->nullable();
+            $table->integer('available_seats');
             $table->date('start_at');
             $table->boolean('is_scheduled')->default(false);
-            $table->text('notes')->nullable();
+            $table->text('note')->nullable();
 
             $table->timestamps();
         });

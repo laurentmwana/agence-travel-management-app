@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\ItinararyTypeEnum;
+use App\Enums\ItineraryTypeEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,9 +23,9 @@ class ItineraryFactory extends Factory
             'price_per_seat' => 10,
             'available_seats' => fake()->randomDigitNotZero(),
             'is_scheduled' => fake()->randomElement([true, false]),
-            'notes' => fake()->text(),
+            'note' => fake()->text(),
             'start_at' => fake()->dateTime(),
-            'type' => fake()->randomElement(ItinararyTypeEnum::toArray()),
+            'type' => fake()->randomElement(ItineraryTypeEnum::toArray()),
         ];
     }
 }
