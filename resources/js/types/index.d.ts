@@ -65,3 +65,9 @@ export type TranslateFn = (
     key: string,
     params?: Record<string, number | string | boolean | null | undefined>,
 ) => string;
+
+export interface FetchResponse<T> {
+    fetchData: T | null;
+    isPending: boolean;
+    error: string | null;
+}

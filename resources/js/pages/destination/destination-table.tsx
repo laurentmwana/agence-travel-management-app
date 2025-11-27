@@ -16,7 +16,7 @@ import { PlusIcon } from 'lucide-react';
 import { SearchInput } from '@/components/search-input';
 import { Button } from '@/components/ui/button';
 import React from 'react';
-import { DestinationDetails } from './destination-details';
+import { DestinationHoverCard } from '../../features/destination/destination-hover-card';
 import { DestinationFormModal } from './destination-form-modal';
 
 interface DestinationTableProps {
@@ -48,7 +48,7 @@ export const DestinationTable: React.FC<DestinationTableProps> = ({
                     />
                 </div>
 
-                <SearchInput  />
+                <SearchInput />
             </div>
 
             <Table>
@@ -64,11 +64,11 @@ export const DestinationTable: React.FC<DestinationTableProps> = ({
                 <TableBody>
                     {destinations.map((item) => {
                         return (
-                            <>
-                                <TableRow key={item.id}>
+                            <React.StrictMode key={item.id}>
+                                <TableRow>
                                     <TableCell>{item.id}</TableCell>
                                     <TableCell>
-                                        <DestinationDetails
+                                        <DestinationHoverCard
                                             destination={item}
                                         />
                                     </TableCell>
@@ -102,7 +102,7 @@ export const DestinationTable: React.FC<DestinationTableProps> = ({
                                         />
                                     </TableCell>
                                 </TableRow>
-                            </>
+                            </React.StrictMode>
                         );
                     })}
                 </TableBody>

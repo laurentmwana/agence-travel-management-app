@@ -32,7 +32,8 @@ export const excerpt = (
     return truncated + separator;
 };
 
+
 export const isMenuActive = (href?: string): boolean => {
     const pathname = window.location.pathname;
-    return href ? href === pathname :  false;
+    return href ? href === pathname : false;
 };
