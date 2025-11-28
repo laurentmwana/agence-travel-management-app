@@ -19,9 +19,12 @@ type Props = {
         trip: number;
     };
     stats: DashboardGraphicItem[];
+    defaultYear: string;
+    years: Array<string>;
 };
 
-const Page: FC<Props> = ({ counters, stats }) => {
+const Page: FC<Props> = ({ counters, stats, defaultYear, years }) => {
+    console.log(years);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={title} />
@@ -44,7 +47,11 @@ const Page: FC<Props> = ({ counters, stats }) => {
                         count={counters.trip}
                     />
                 </div>
-                <DashboardGraphicCard chartData={stats} />
+                <DashboardGraphicCard
+                    chartData={stats}
+                    defaultYear={defaultYear}
+                    years={years}
+                />
             </div>
         </AppLayout>
     );

@@ -3,7 +3,13 @@
 import * as React from 'react';
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
 
-import { CardContent } from '@/components/ui/card';
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from '@/components/ui/card';
 import {
     type ChartConfig,
     ChartContainer,
@@ -12,7 +18,9 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from '@/components/ui/chart';
+import { SelectGenerate } from '@/components/ui/select-generate';
 import { DashboardGraphicItem } from '@/types/model';
+import { router } from '@inertiajs/react';
 
 export const description = 'An interactive area chart';
 
@@ -29,10 +37,14 @@ const chartConfig = {
 
 type DashboardGraphicCardProps = {
     chartData: DashboardGraphicItem[];
+    defaultYear: string;
+    years: Array<string>;
 };
 
 export const DashboardGraphicCard: React.FC<DashboardGraphicCardProps> = ({
     chartData,
+    defaultYear,
+    years,
 }) => {
     const [timeRange, setTimeRange] = React.useState('90d');
 
@@ -51,15 +63,29 @@ export const DashboardGraphicCard: React.FC<DashboardGraphicCardProps> = ({
     });
 
     return (
-        <div className="relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 p-4 md:min-h-min dark:border-sidebar-border">
-            <div className="mb-4">
-                <h2 className="mb-2 text-xl font-semibold">
-                    Statistiques Financières
-                </h2>
-                <p className="text-sm text-foreground">
-                    Bénéfice Net, Dépense Total
-                </p>
-            </div>
+        <Card>
+            <CardHeader className="flex flex-row items-center justify-between gap-2">
+                <div>
+                    <CardTitle>Statistiques Financières</CardTitle>
+                    <CardDescription>
+                        Bénéfice Net, Dépense Total
+                    </CardDescription>
+                </div>
+                <SelectGenerate
+                    className="w-[200px]"
+                    value={defaultYear}
+                    options={years.map((y) => {
+                        return {
+                            name: y,
+                            value: y,
+                            disabled: y.toString() == defaultYear,
+                        };
+                    })}
+                    onChange={(v) =>
+                        router.get(window.location.pathname, { year: v })
+                    }
+                />
+            </CardHeader>
             <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
                 <ChartContainer
                     config={chartConfig}
@@ -151,6 +177,6 @@ export const DashboardGraphicCard: React.FC<DashboardGraphicCardProps> = ({
                     </AreaChart>
                 </ChartContainer>
             </CardContent>
-        </div>
+        </Card>
     );
 };
