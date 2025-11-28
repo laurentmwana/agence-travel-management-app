@@ -18,10 +18,22 @@ export interface Itinerary extends Timestemp {
     price_per_seat: string;
     price_per_person: string;
     distance_km: number;
-    start_at: string;
     type: ItineraryType;
     start: Destination;
     end: Destination;
+}
+
+export interface Trip extends Timestemp {
+    id: string;
+    perfomed_at: string;
+    observation: number;
+    total_cost: number;
+    revenue: number;
+    net_profit: number;
+    fuel_cost: number;
+    other_expenses: number;
+    itinerary: Itinerary;
+    note: string | null;
 }
 
 export interface PaginationCollection<T> {

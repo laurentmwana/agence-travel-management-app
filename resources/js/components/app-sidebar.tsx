@@ -15,8 +15,9 @@ import destination from '@/routes/destination';
 import itinerary from '@/routes/itinerary';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Map, Share } from 'lucide-react';
+import { BookOpen, Folder, LayoutGrid, Map, PlaneLanding, Share } from 'lucide-react';
 import AppLogo from './app-logo';
+import trip from '@/routes/trip';
 
 const mainNavItems: NavItem[] = [
     {
@@ -33,6 +34,12 @@ const mainNavItems: NavItem[] = [
         title: 'Itinéraire',
         href: itinerary.index(),
         icon: Map,
+    },
+
+    {
+        title: 'Trajet',
+        href: trip.index(),
+        icon: PlaneLanding,
     },
 ];
 

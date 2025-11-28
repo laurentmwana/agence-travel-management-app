@@ -40,7 +40,6 @@ export const ItineraryForm: React.FC<ItineraryFormProps> = ({ entity }) => {
         price_per_seat: entity?.price_per_seat ?? '0',
         price_per_person: entity?.price_per_person ?? '0',
         distance_km: entity?.distance_km ?? '0',
-        start_at: entity?.start_at ?? '',
         start_destination_id: entity?.start?.id.toString() ?? '',
         end_destination_id: entity?.end?.id.toString() ?? '',
     });
@@ -203,19 +202,6 @@ export const ItineraryForm: React.FC<ItineraryFormProps> = ({ entity }) => {
                             ]}
                         />
                         <InputError message={errors.is_scheduled} />
-                    </div>
-
-                    {/* Date / Heure du départ */}
-                    <div className="grid gap-2">
-                        <Label>Date et heure de départ</Label>
-                        <Input
-                            type="datetime-local"
-                            value={data.start_at}
-                            onChange={(e) =>
-                                setData('start_at', e.target.value)
-                            }
-                        />
-                        <InputError message={errors.start_at} />
                     </div>
 
                     {/* Notes */}
