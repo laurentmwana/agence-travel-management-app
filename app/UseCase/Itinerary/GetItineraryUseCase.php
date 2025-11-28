@@ -9,6 +9,13 @@ class GetItineraryUseCase
 {
     public function __construct(private ItineraryRepository $repository) {}
 
+    public function findAll(array $columns = ['*'])
+    {
+        return DB::transaction(function () use ($columns) {
+            return $this->repository->findAll($columns);
+        });
+    }
+
     public function findOrFail(string $id)
     {
         return DB::transaction(function () use ($id) {

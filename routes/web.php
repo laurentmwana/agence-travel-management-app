@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ApiBaseController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ItineraryController;
+use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -14,9 +15,10 @@ Route::get('/', function () {
 })->name('home');
 
 // JSON REPONSE 
-Route::prefix('json-reponse')->name('json.')->group(function () {
+Route::prefix('json-response')->name('json.')->group(function () {
     Route::get('destinations', [ApiBaseController::class, 'destinations'])->name('destination.index');
     Route::get('itineraries-types', [ApiBaseController::class, 'itinerariesTypes'])->name('itinerary.type');
+    Route::get('itineraries', [ApiBaseController::class, 'itineraries'])->name('itinerary.index');
 });
 // END JSON REPONSE
 
@@ -35,6 +37,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('itinerary', ItineraryController::class)
         ->parameter('itinerary', 'id');
     // END ITINERARY ROUTE
+
+    // TRIP ROUTE
+    Route::resource('trip', TripController::class)
+        ->parameter('trip', 'id');
+    // END TRIP ROUTE
 
 });
 

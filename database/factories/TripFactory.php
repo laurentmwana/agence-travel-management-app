@@ -16,14 +16,22 @@ class TripFactory extends Factory
      */
     public function definition(): array
     {
+
+        $fuelCost = fake()->randomFloat(2,  2000, 8000);
+        $otherExpenses = fake()->randomFloat(2,  2000, 8000);
+        $revenue = fake()->randomFloat(2,  2000, 8000);
+
+        $totalCost = $fuelCost + $otherExpenses;
+        $netProfit = $revenue - $totalCost;
+
         return [
             'perfomed_at' => fake()->dateTime(),
             'observation' => fake()->text(),
-            'total_cost' => fake()->randomFloat(min: 2000, max: 8000),
-            'revenue' => fake()->randomFloat(min: 2000, max: 8000),
-            'net_profit' => fake()->randomFloat(min: 2000, max: 8000),
-            'fuel_cost' => fake()->randomFloat(min: 2000, max: 8000),
-            'other_expenses' => fake()->randomFloat(min: 2000, max: 8000),
+            'total_cost' => $totalCost,
+            'revenue' => $revenue,
+            'net_profit' => $netProfit,
+            'fuel_cost' => $fuelCost,
+            'other_expenses' => $otherExpenses,
         ];
     }
 }
