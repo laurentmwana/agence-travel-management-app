@@ -13,4 +13,11 @@ trait RepositoryTrait
       {
             return $this->model::query()->find($id);
       }
+
+      public function countBy(array $criteria = [])
+      {
+            return $this->model::query()
+                  ->with($criteria)
+                  ->count();
+      }
 }

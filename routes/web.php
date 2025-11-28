@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ApiBaseController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ItineraryController;
 use App\Http\Controllers\TripController;
@@ -23,9 +24,12 @@ Route::prefix('json-response')->name('json.')->group(function () {
 // END JSON REPONSE
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    // DASHBOARD ROUTE
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard/trip', [DashboardController::class, 'trip'])->name('dashboard.trip');
+    Route::get('dashboard/itinerary', [DashboardController::class, 'itinerary'])->name('dashboard.itinerary');
+    Route::get('dashboard/destination', [DashboardController::class, 'destination'])->name('dashboard.destination');
+    // DASHBOARD ROUTE
 
     // DESTINATION ROUTE
     Route::get('destination', [DestinationController::class, 'index'])->name('destination.index');

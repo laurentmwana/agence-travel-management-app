@@ -28,4 +28,29 @@ class GetTripUseCase
             return $this->repository->findPaginated($filters, $sortable, $search);
         });
     }
+
+    public function findStatByYear(string $year)
+    {
+        $stats = [];
+
+        for ($month = 1; $month <= 12; $month++) {
+            $date = sprintf('%04d-%02d', $year, $month);
+            $stats[$date] = [
+                'date'       => $date,
+                'net_profit' => 0,
+                'total_cost' => 0,
+            ];
+        }
+
+        return DB::transaction(function () use ($stats) {
+            return array_values($this->repository->findStatByYear($stats));
+        });
+    }
+
+    public function countBy(array $criteria = []): int
+    {
+        return DB::transaction(function () use ($criteria) {
+            return $this->repository->countBy($criteria);
+        });
+    }
 }

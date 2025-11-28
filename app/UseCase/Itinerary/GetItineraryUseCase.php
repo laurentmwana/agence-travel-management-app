@@ -35,4 +35,11 @@ class GetItineraryUseCase
             return $this->repository->findPaginated($filters, $sortable, $search);
         });
     }
+
+     public function countBy(array $criteria = []): int
+    {
+        return DB::transaction(function () use ($criteria) {
+            return $this->repository->countBy($criteria);
+        });
+    }
 }

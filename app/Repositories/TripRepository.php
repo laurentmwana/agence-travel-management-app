@@ -28,4 +28,18 @@ class TripRepository
 
             return $this->filter->orderFromRequest($builder, $filters, $sortable)->paginate();
       }
+
+      public function findStatByYear(array $stats)
+      {
+            $trips = $this->findAll();
+
+            foreach ($trips as $trip) {
+                  $keyIndex = $trip->created_at->format('Y-m');
+                  if (isset($stats[$keyIndex])) {
+                        $stats[$keyIndex]['net_profit'] += $trip->net_profit;
+                        $stats[$keyIndex]['total_cost'] += $trip->total_cost;
+                  }
+            }
+            return $stats;
+      }
 }
