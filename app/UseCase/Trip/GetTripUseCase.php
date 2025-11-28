@@ -24,9 +24,7 @@ class GetTripUseCase
 
     public function filters(array $filters, array $sortable, ?string $search = null)
     {
-        return DB::transaction(function () use ($filters, $sortable, $search) {
-            return $this->repository->findPaginated($filters, $sortable, $search);
-        });
+        return $this->repository->findPaginated($filters, $sortable, $search);
     }
 
     public function findStatByYear(string $year)
@@ -41,16 +39,11 @@ class GetTripUseCase
                 'total_cost' => 0,
             ];
         }
-
-        return DB::transaction(function () use ($stats) {
-            return array_values($this->repository->findStatByYear($stats));
-        });
+        return array_values($this->repository->findStatByYear($year, $stats));
     }
 
     public function countBy(array $criteria = []): int
     {
-        return DB::transaction(function () use ($criteria) {
-            return $this->repository->countBy($criteria);
-        });
+        return $this->repository->countBy($criteria);
     }
 }

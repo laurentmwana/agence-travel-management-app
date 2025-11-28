@@ -11,35 +11,27 @@ class GetDestinationUseCase
 
     public function findOrFail(string $id)
     {
-        return DB::transaction(function () use ($id) {
-            $destination =  $this->repository->findByid($id);
+        $destination =  $this->repository->findByid($id);
 
-            if (!$destination) {
-                abort(404);
-            }
+        if (!$destination) {
+            abort(404);
+        }
 
-            return $destination;
-        });
+        return $destination;
     }
 
     public function findAll(array $columns = ['*'])
     {
-        return DB::transaction(function () use ($columns) {
-            return $this->repository->findAll($columns);
-        });
+        return $this->repository->findAll($columns);
     }
 
     public function filters(array $filters, ?string $search = null)
     {
-        return DB::transaction(function () use ($filters, $search) {
-            return $this->repository->findPaginated($filters, $search);
-        });
+        return $this->repository->findPaginated($filters, $search);
     }
 
     public function countBy(array $criteria = []): int
     {
-        return DB::transaction(function () use ($criteria) {
-            return $this->repository->countBy($criteria);
-        });
+        return $this->repository->countBy($criteria);
     }
 }

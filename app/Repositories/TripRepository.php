@@ -29,9 +29,9 @@ class TripRepository
             return $this->filter->orderFromRequest($builder, $filters, $sortable)->paginate();
       }
 
-      public function findStatByYear(array $stats)
+      public function findStatByYear(string $year, array $stats)
       {
-            $trips = $this->findAll();
+            $trips = Trip::query()->where('created_at', 'like', "%$year%")->get();
 
             foreach ($trips as $trip) {
                   $keyIndex = $trip->created_at->format('Y-m');
