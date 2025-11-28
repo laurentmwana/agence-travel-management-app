@@ -19,7 +19,6 @@ class UpdateItineraryUseCase
                 'price_per_seat' => $dto->getPricePerSeat(),
                 'price_per_person' => $dto->getPricePerPerson(),
                 'distance_km' => $dto->getDistanceKm(),
-                'start_at' => $dto->getStartAt(),
                 'start_destination_id' => $dto->getStartDestinationId(),
                 'end_destination_id' => $dto->getEndDestinationId(),
             ]);

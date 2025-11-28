@@ -28,7 +28,6 @@ class ItineraryFormResource extends JsonResource
             'start_at' => $this->resource->start_at,
             'start' => new DestinationItemResource($this->resource->startDestination),
             'end' => new DestinationItemResource($this->resource->endDestination),
-            'start_at' => $this->resource->start_at,
             'created_at' => $this->resource->created_at,
             'updated_at' => $this->resource->updated_at,
         ];

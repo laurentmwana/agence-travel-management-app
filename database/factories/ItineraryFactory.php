@@ -24,7 +24,6 @@ class ItineraryFactory extends Factory
             'available_seats' => fake()->randomDigitNotZero(),
             'is_scheduled' => fake()->randomElement([true, false]),
             'note' => fake()->text(),
-            'start_at' => fake()->dateTime(),
             'type' => fake()->randomElement(ItineraryTypeEnum::toArray()),
         ];
     }

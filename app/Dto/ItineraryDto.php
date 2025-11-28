@@ -13,7 +13,6 @@ class ItineraryDto
       private float $pricePerSeat;
       private float $pricePerPerson;
       private string|null $distanceKm;
-      private $startAt;
       private $startDestinationId;
       private $endDestinationId;
 
@@ -176,23 +175,6 @@ class ItineraryDto
       public function setDistanceKm(string $distanceKm): self
       {
             $this->distanceKm = $distanceKm;
-            return $this;
-      }
-
-      /**
-       * Get the value of startAt
-       */
-      public function getStartAt(): string
-      {
-            return $this->startAt;
-      }
-
-      /**
-       * Set the value of startAt
-       */
-      public function setStartAt($startAt): self
-      {
-            $this->startAt = $startAt;
             return $this;
       }
 

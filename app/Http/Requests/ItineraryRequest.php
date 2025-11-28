@@ -35,7 +35,6 @@ class ItineraryRequest extends FormRequest
             'distance_km' => ['required'],
             'start_destination_id' => ['required', 'exists:destinations,id'],
             'end_destination_id' =>  ['required', 'exists:destinations,id'],
-            'start_at' => ['required'],
         ];
     }
 

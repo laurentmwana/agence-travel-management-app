@@ -17,7 +17,6 @@ class Itinerary extends Model
         'price_per_seat',
         'price_per_person',
         'distance_km',
-        'start_at',
         'start_destination_id',
         'end_destination_id'
     ];
