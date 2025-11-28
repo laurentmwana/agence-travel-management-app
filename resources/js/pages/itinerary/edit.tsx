@@ -1,5 +1,6 @@
 import HeadingSmall from '@/components/heading-small';
 import AppLayout from '@/layouts/app-layout';
+import itinerary from '@/routes/itinerary';
 import { type BreadcrumbItem } from '@/types';
 import { Itinerary } from '@/types/model';
 import { Head } from '@inertiajs/react';
@@ -12,7 +13,10 @@ type PageProps = {
 
 const title = "Edition d'une itinéraire";
 
-const breadcrumbs: BreadcrumbItem[] = [];
+const breadcrumbs: BreadcrumbItem[] = [
+    { href: itinerary.index().url, title: 'Itinéraire' },
+    { href: '', title: 'Edition' },
+];
 
 const Page: FC<PageProps> = ({ itinerary }) => {
     return (

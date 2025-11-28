@@ -4,12 +4,16 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { FC } from 'react';
 import { ItineraryForm } from './itinerary-form';
+import itinerary from '@/routes/itinerary';
 
 type PageProps = {};
 
 const title = 'Ajouter une itinéraire';
 
-const breadcrumbs: BreadcrumbItem[] = [];
+const breadcrumbs: BreadcrumbItem[] = [
+    { href: itinerary.index().url, title: 'Itinéraire' },
+    { href: '', title: 'Détails' },
+];
 
 const Page: FC<PageProps> = () => {
     return (
