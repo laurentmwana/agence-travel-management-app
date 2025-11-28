@@ -60,3 +60,9 @@ export interface PaginationCollection<T> {
         total: number;
     };
 }
+
+export interface DashboardGraphicItem {
+    date: string;
+    total_cost: number;
+    net_profit: number;
+}
