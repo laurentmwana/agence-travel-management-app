@@ -21,7 +21,7 @@ createInertiaApp({
         ),
     setup({ el, App, props }) {
         const root = createRoot(el);
-
+    
         root.render(
             <StrictMode>
                 <Toaster closeButton={true} position="top-right" />
