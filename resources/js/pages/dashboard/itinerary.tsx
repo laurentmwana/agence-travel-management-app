@@ -1,36 +1,80 @@
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
+import HeadingSmall from '@/components/heading-small';
+import { Pagination } from '@/components/ui/pagination';
+import { DashboardCountCard } from '@/features/dashboard/dashboard-count-card';
+import { DashboardDateFilter } from '@/features/dashboard/dashboard-date-filter';
+import { ItineraryStatTable } from '@/features/itinerary/itinerary-stat-table';
 import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
+import { DashboardMonth, Itinerary, PaginationCollection } from '@/types/model';
 import { Head } from '@inertiajs/react';
+import { FC } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Tableau de bord',
         href: dashboard().url,
+    },
+    {
+        title: 'Itinéraire',
+        href: '',
     },
 ];
 
-export default function Dashboard() {
+const title = 'Itinéraire';
+
+type Props = {
+    months: DashboardMonth[];
+    years: Array<string>;
+    defaultYear: string;
+    defaultMonth: string;
+    itineraries: PaginationCollection<Itinerary>;
+    defaultType?: string;
+};
+
+const Page: FC<Props> = ({
+    months,
+    years,
+    defaultYear,
+    defaultMonth,
+    itineraries,
+    defaultType,
+}) => {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+            <Head title={title} />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+                <HeadingSmall title={title} />
+
+                <div className="grid gap-4 lg:grid-cols-4">
+                    <div className="lg:col-span-1">
+                        <DashboardDateFilter
+                            years={years}
+                            defaultYear={defaultYear}
+                            months={months}
+                            defaultMonth={defaultMonth}
+                        />
                     </div>
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+
+                    <div className="lg:col-span-3">
+                        <div className="space-y-4">
+                            <DashboardCountCard
+                                count={itineraries.meta.total}
+                                emptyMessage="aucun itinéraire trouvé"
+                                title="Itinéraire"
+                            />
+
+                            <ItineraryStatTable
+                                itineraries={itineraries.data}
+                                defaultType={defaultType ?? ''}
+                            />
+                            <Pagination items={itineraries} />
+                        </div>
                     </div>
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                </div>
-                <div className="relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
-                    <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
                 </div>
             </div>
         </AppLayout>
     );
-}
+};
+
+export default Page;

@@ -7,63 +7,68 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { ago } from '@/lib/date';
-import { Itinerary } from '@/types/model';
-import { PlusIcon } from 'lucide-react';
+import React from 'react';
 
 import { SearchInput } from '@/components/search-input';
 import { Badge } from '@/components/ui/badge';
-import { ButtonLink } from '@/components/ui/button-link';
+import { SelectGenerate } from '@/components/ui/select-generate';
 import { TableHeadSortable } from '@/components/ui/sortable-head';
-import { getItineraryTypeIcon } from '@/features/itinerary';
-import { numberToFixed } from '@/lib/number';
-import itinerary from '@/routes/itinerary';
-import React from 'react';
 import { DestinationHoverCard } from '@/features/destination/destination-hover-card';
+import { getItineraryTypeIcon } from '@/features/itinerary';
+import { useFetch } from '@/hooks/use-fetch';
+import { useParams } from '@/hooks/use-params';
+import itinerary from '@/routes/itinerary';
+import json from '@/routes/json';
+import { Itinerary, ItineraryType } from '@/types/model';
+import { router } from '@inertiajs/react';
 
-interface ItineraryTableProps {
+interface ItineraryStatTableProps {
     itineraries: Itinerary[];
+    defaultType: string;
 }
 
-export const ItineraryTable: React.FC<ItineraryTableProps> = ({
+export const ItineraryStatTable: React.FC<ItineraryStatTableProps> = ({
     itineraries,
+    defaultType,
 }) => {
-    const [openFormUpdateModalId, setOpenFormUpdateModalId] = React.useState<
-        string | null
-    >(null);
+    const fetchItinerariesType = useFetch<{ data: ItineraryType[] }>(
+        json.itinerary.type().url,
+    );
+    const { mergeParams } = useParams();
+
+    const getRouteFilterByType = (type: string) =>
+        mergeParams(window.location.pathname, {
+            type: type,
+        });
 
     return (
-        <div className="space-y-4">
-            <div className="flex items-center justify-between gap-4">
-                <div>
-                    <ButtonLink
-                        href={itinerary.create().url}
-                        size="sm"
-                        variant="ghost"
-                    >
-                        <PlusIcon size={15} />
-                    </ButtonLink>
-                </div>
-
+        <div>
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                 <SearchInput />
+                <SelectGenerate
+                    className="md:w-50"
+                    value={defaultType}
+                    isPending={fetchItinerariesType.isPending}
+                    placeholder="Types"
+                    onChange={(v) => router.visit(getRouteFilterByType(v))}
+                    options={
+                        fetchItinerariesType.fetchData?.data.map((type) => ({
+                            value: type,
+                            name: type,
+                            selected: type === defaultType,
+                        })) ?? []
+                    }
+                />
             </div>
-
             <Table>
                 <TableHeader>
                     <TableRow>
                         <TableHead>Départ</TableHead>
                         <TableHead>Arriver</TableHead>
                         <TableHeadSortable field="type">Type</TableHeadSortable>
-                        <TableHeadSortable field="distance_km">
-                            Distance
-                        </TableHeadSortable>
-                        <TableHeadSortable field="price_per_seat">
-                            Prix
-                        </TableHeadSortable>
                         <TableHeadSortable field="is_scheduled">
                             Programmer
                         </TableHeadSortable>
-                        <TableHead>Créer</TableHead>
                         <TableHead className="text-end">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -90,10 +95,6 @@ export const ItineraryTable: React.FC<ItineraryTableProps> = ({
                                     </div>
                                 </TableCell>
                                 <TableCell>
-                                    {numberToFixed(item.distance_km, 3)} km
-                                </TableCell>
-                                <TableCell>{item.price_per_seat}$</TableCell>{' '}
-                                <TableCell>
                                     <Badge
                                         variant={
                                             item.is_scheduled
@@ -104,7 +105,6 @@ export const ItineraryTable: React.FC<ItineraryTableProps> = ({
                                         {item.is_scheduled ? 'Oui' : 'Non'}
                                     </Badge>
                                 </TableCell>{' '}
-                                <TableCell>{ago(item.created_at)}</TableCell>
                                 <TableCell>
                                     <CollectionActionUrl
                                         routeDelete={

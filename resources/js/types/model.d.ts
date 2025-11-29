@@ -66,3 +66,8 @@ export interface DashboardGraphicItem {
     total_cost: number;
     net_profit: number;
 }
+
+export interface DashboardMonth {
+    label: string;
+    value: string;
+}
