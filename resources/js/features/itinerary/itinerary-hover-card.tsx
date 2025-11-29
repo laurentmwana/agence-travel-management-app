@@ -18,6 +18,7 @@ export const ItineraryHoverCard: React.FC<ItineraryHoverCardProps> = ({
     itinerary,
 }) => {
     const Icon = getItineraryTypeIcon(itinerary.type);
+
     return (
         <div>
             <HoverCard>
@@ -29,21 +30,56 @@ export const ItineraryHoverCard: React.FC<ItineraryHoverCardProps> = ({
                         )}
                     </Button>
                 </HoverCardTrigger>
+
                 <HoverCardContent className="w-80">
-                    <h2 className="mb-3 text-xl font-semibold">
-                        {itinerary.start.name} - ${itinerary.end.name}
+                    {/* HEADER */}
+                    <h2 className="mb-3 text-lg font-semibold">
+                        {itinerary.start.name} → {itinerary.end.name}
                     </h2>
-                    <p className="mb-2 text-sm">
-                        Distance: {itinerary.distance_km}
-                    </p>
-                    <div className="lex mb-2 flex items-center gap-1 text-sm">
-                        <p>Type : </p>
-                        <p className="flex items-center gap-1">
-                            <Icon size={13} /> <span> {itinerary.type} </span>
-                        </p>
+
+                    {/* TYPE */}
+                    <div className="mb-2 flex items-center gap-1 text-sm">
+                        <p className="font-medium">Type :</p>
+                        <span className="flex items-center gap-1 capitalize">
+                            <Icon size={13} />
+                            {itinerary.type}
+                        </span>
                     </div>
-                    <p className="mb-2 text-xs">
-                        Crééé il y a {ago(itinerary.created_at)}
+
+                    {/* DISTANCE */}
+                    <p className="mb-2 text-sm">
+                        Distance :
+                        <span className="font-medium">
+                            {itinerary.distance_km} km
+                        </span>
+                    </p>
+
+                    {/* PRICING */}
+                    <p className="mb-2 text-sm">
+                        Prix par personne :
+                        <span className="font-medium">
+                            ${itinerary.price_per_person}
+                        </span>
+                    </p>
+
+                    <p className="mb-2 text-sm">
+                        Prix par siège :
+                        <span className="font-medium">
+                            ${itinerary.price_per_seat}
+                        </span>
+                    </p>
+
+                    {/* SEATS */}
+                    <p className="mb-2 text-sm">
+                        Sièges disponibles :
+                        <span className="font-medium">
+                            {itinerary.available_seats}
+                        </span>
+                    </p>
+
+                    {/* CREATED */}
+                    <p className="mt-3 text-xs text-muted-foreground">
+                        Créé il y a {ago(itinerary.created_at)}
                     </p>
                 </HoverCardContent>
             </HoverCard>

@@ -15,11 +15,11 @@ import { SearchInput } from '@/components/search-input';
 import { Badge } from '@/components/ui/badge';
 import { ButtonLink } from '@/components/ui/button-link';
 import { TableHeadSortable } from '@/components/ui/sortable-head';
+import { DestinationHoverCard } from '@/features/destination/destination-hover-card';
 import { getItineraryTypeIcon } from '@/features/itinerary';
 import { numberToFixed } from '@/lib/number';
 import itinerary from '@/routes/itinerary';
 import React from 'react';
-import { DestinationHoverCard } from '@/features/destination/destination-hover-card';
 
 interface ItineraryTableProps {
     itineraries: Itinerary[];
@@ -77,7 +77,7 @@ export const ItineraryTable: React.FC<ItineraryTableProps> = ({
                                     <DestinationHoverCard
                                         destination={item.start}
                                     />
-                                </TableCell>{' '}
+                                </TableCell>
                                 <TableCell>
                                     <DestinationHoverCard
                                         destination={item.end}
@@ -92,7 +92,7 @@ export const ItineraryTable: React.FC<ItineraryTableProps> = ({
                                 <TableCell>
                                     {numberToFixed(item.distance_km, 3)} km
                                 </TableCell>
-                                <TableCell>{item.price_per_seat}$</TableCell>{' '}
+                                <TableCell>{item.price_per_seat}$</TableCell>
                                 <TableCell>
                                     <Badge
                                         variant={
@@ -103,7 +103,7 @@ export const ItineraryTable: React.FC<ItineraryTableProps> = ({
                                     >
                                         {item.is_scheduled ? 'Oui' : 'Non'}
                                     </Badge>
-                                </TableCell>{' '}
+                                </TableCell>
                                 <TableCell>{ago(item.created_at)}</TableCell>
                                 <TableCell>
                                     <CollectionActionUrl

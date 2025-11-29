@@ -82,7 +82,7 @@ export const ItineraryStatTable: React.FC<ItineraryStatTableProps> = ({
                                     <DestinationHoverCard
                                         destination={item.start}
                                     />
-                                </TableCell>{' '}
+                                </TableCell>
                                 <TableCell>
                                     <DestinationHoverCard
                                         destination={item.end}
@@ -104,7 +104,7 @@ export const ItineraryStatTable: React.FC<ItineraryStatTableProps> = ({
                                     >
                                         {item.is_scheduled ? 'Oui' : 'Non'}
                                     </Badge>
-                                </TableCell>{' '}
+                                </TableCell>
                                 <TableCell>
                                     <CollectionActionUrl
                                         routeDelete={

@@ -147,10 +147,10 @@ export default function TwoFactorRecoveryCodes({
                                     <p id="regenerate-warning">
                                         Each recovery code can be used once to
                                         access your account and will be removed
-                                        after use. If you need more, click{' '}
+                                        after use. If you need more, click
                                         <span className="font-bold">
                                             Regenerate Codes
-                                        </span>{' '}
+                                        </span>
                                         above.
                                     </p>
                                 </div>

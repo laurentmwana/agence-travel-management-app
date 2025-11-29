@@ -5,6 +5,7 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
+import { formatLargeNumber } from '@/lib/number';
 import type React from 'react';
 
 interface DashboardCountMoneyCardProps {
@@ -17,15 +18,6 @@ interface DashboardCountMoneyCardProps {
 export const DashboardCountMoneyCard: React.FC<
     DashboardCountMoneyCardProps
 > = ({ netProfit, totalCost, emptyMessage, title }) => {
-    const formatCurrency = (amount: number) => {
-        return new Intl.NumberFormat('fr-FR', {
-            style: 'currency',
-            currency: 'EUR',
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-        }).format(amount);
-    };
-
     const totalRevenue = netProfit + totalCost;
     const hasData = totalRevenue !== 0 || totalCost !== 0;
 
@@ -65,7 +57,7 @@ export const DashboardCountMoneyCard: React.FC<
                                           : 'text-blue-600 dark:text-blue-400'
                                 }`}
                             >
-                                {formatCurrency(netProfit)}
+                                {formatLargeNumber(netProfit)}
                             </h2>
 
                             {/* BADGE */}
@@ -108,7 +100,7 @@ export const DashboardCountMoneyCard: React.FC<
                                                 />
                                             </svg>
                                         )}
-                                        {Math.abs(profitMargin).toFixed(1)}%{' '}
+                                        {Math.abs(profitMargin).toFixed(1)}%
                                         {isProfit ? 'de marge' : 'de perte'}
                                     </span>
                                 </div>
@@ -134,7 +126,7 @@ export const DashboardCountMoneyCard: React.FC<
                                     </span>
                                 </div>
                                 <span className="text-base font-semibold tabular-nums">
-                                    {formatCurrency(totalRevenue)}
+                                    {formatLargeNumber(totalRevenue)}
                                 </span>
                             </div>
 
@@ -147,7 +139,7 @@ export const DashboardCountMoneyCard: React.FC<
                                     </span>
                                 </div>
                                 <span className="text-base font-semibold tabular-nums">
-                                    {formatCurrency(totalCost)}
+                                    {formatLargeNumber(totalCost)}
                                 </span>
                             </div>
 

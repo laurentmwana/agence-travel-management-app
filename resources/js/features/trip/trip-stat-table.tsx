@@ -20,6 +20,7 @@ import { Itinerary, Trip } from '@/types/model';
 import { router } from '@inertiajs/react';
 import { getItineraryTypeIcon } from '../itinerary';
 import { ItineraryHoverCard } from '../itinerary/itinerary-hover-card';
+import { formatLargeNumber } from '@/lib/number';
 
 interface TripStatTableProps {
     trips: Trip[];
@@ -92,7 +93,7 @@ export const TripStatTable: React.FC<TripStatTableProps> = ({
                                 <TableCell
                                     className={`${item.net_profit < 0 ? 'text-destructive' : 'text-green-500'}`}
                                 >
-                                    {item.net_profit} Fc
+                                    {formatLargeNumber(item.net_profit)} Fc
                                 </TableCell>
                                 <TableCell>
                                     <CollectionActionUrl

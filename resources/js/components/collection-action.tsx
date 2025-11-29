@@ -60,10 +60,6 @@ export const CollectionActionUrl: FC<CollectionActionUrlProps> = ({
     );
 };
 
-
-
-
-
 type CollectionActionClickableProps = {
     className?: string;
     onRouteEdit?: () => void;

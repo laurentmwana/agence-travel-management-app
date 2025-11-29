@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts';
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 import {
     Card,
@@ -19,6 +19,7 @@ import {
     ChartTooltipContent,
 } from '@/components/ui/chart';
 import { SelectGenerate } from '@/components/ui/select-generate';
+import { formatLargeNumber } from '@/lib/number';
 import { DashboardGraphicItem } from '@/types/model';
 import { router } from '@inertiajs/react';
 
@@ -48,15 +49,14 @@ export const DashboardGraphicCard: React.FC<DashboardGraphicCardProps> = ({
 }) => {
     const [timeRange, setTimeRange] = React.useState('90d');
 
+    // 🔎 Filtrage des données
     const filteredData = chartData.filter((item) => {
         const date = new Date(item.date);
         const referenceDate = new Date('2024-06-30');
         let daysToSubtract = 90;
-        if (timeRange === '30d') {
-            daysToSubtract = 30;
-        } else if (timeRange === '7d') {
-            daysToSubtract = 7;
-        }
+        if (timeRange === '30d') daysToSubtract = 30;
+        if (timeRange === '7d') daysToSubtract = 7;
+
         const startDate = new Date(referenceDate);
         startDate.setDate(startDate.getDate() - daysToSubtract);
         return date >= startDate;
@@ -74,22 +74,21 @@ export const DashboardGraphicCard: React.FC<DashboardGraphicCardProps> = ({
                 <SelectGenerate
                     className="w-[200px]"
                     value={defaultYear}
-                    options={years.map((y) => {
-                        return {
-                            name: y,
-                            value: y,
-                            disabled: y.toString() == defaultYear,
-                        };
-                    })}
+                    options={years.map((y) => ({
+                        name: y,
+                        value: y,
+                        disabled: y.toString() == defaultYear,
+                    }))}
                     onChange={(v) =>
                         router.get(window.location.pathname, { year: v })
                     }
                 />
             </CardHeader>
+
             <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
                 <ChartContainer
                     config={chartConfig}
-                    className="aspect-auto h-[250px] w-full"
+                    className="aspect-auto h-[260px] w-full"
                 >
                     <AreaChart data={filteredData}>
                         <defs>
@@ -111,6 +110,7 @@ export const DashboardGraphicCard: React.FC<DashboardGraphicCardProps> = ({
                                     stopOpacity={0.1}
                                 />
                             </linearGradient>
+
                             <linearGradient
                                 id="fillNetProfit"
                                 x1="0"
@@ -130,49 +130,64 @@ export const DashboardGraphicCard: React.FC<DashboardGraphicCardProps> = ({
                                 />
                             </linearGradient>
                         </defs>
-                        <CartesianGrid vertical={false} />
+
+                        <CartesianGrid vertical={false} strokeDasharray="4 4" />
+
                         <XAxis
                             dataKey="date"
                             tickLine={false}
                             axisLine={false}
                             tickMargin={8}
                             minTickGap={32}
-                            tickFormatter={(value) => {
-                                const date = new Date(value);
-                                return date.toLocaleDateString('fr-FR', {
+                            tickFormatter={(value) =>
+                                new Date(value).toLocaleDateString('fr-FR', {
                                     month: 'short',
-                                });
-                            }}
+                                })
+                            }
                         />
+
+                        {/* 📌 Ajout YAxis avec formatage */}
+                        <YAxis
+                            width={55}
+                            tickFormatter={(v) => formatLargeNumber(v)}
+                        />
+
                         <ChartTooltip
                             cursor={false}
                             content={
                                 <ChartTooltipContent
-                                    labelFormatter={(value) => {
-                                        return new Date(
-                                            value,
-                                        ).toLocaleDateString('fr-FR', {
-                                            month: 'short',
-                                        });
-                                    }}
+                                    labelFormatter={(value) =>
+                                        new Date(value).toLocaleDateString(
+                                            'fr-FR',
+                                            {
+                                                month: 'short',
+                                            },
+                                        )
+                                    }
+                                    formatter={(value: any) =>
+                                        formatLargeNumber(value as number)
+                                    }
                                     indicator="dot"
                                 />
                             }
                         />
+
                         <Area
                             dataKey="net_profit"
                             type="natural"
                             fill="url(#fillNetProfit)"
                             stroke="var(--color-net_profit)"
-                            stackId="a"
+                            strokeWidth={2}
                         />
+
                         <Area
                             dataKey="total_cost"
                             type="natural"
                             fill="url(#fillTotalCost)"
                             stroke="var(--color-total_cost)"
-                            stackId="a"
+                            strokeWidth={2}
                         />
+
                         <ChartLegend content={<ChartLegendContent />} />
                     </AreaChart>
                 </ChartContainer>

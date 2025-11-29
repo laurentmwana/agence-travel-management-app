@@ -15,6 +15,7 @@ import { SearchInput } from '@/components/search-input';
 import { ButtonLink } from '@/components/ui/button-link';
 import { TableHeadSortable } from '@/components/ui/sortable-head';
 import { ItineraryHoverCard } from '@/features/itinerary/itinerary-hover-card';
+import { formatLargeNumber } from '@/lib/number';
 import trip from '@/routes/trip';
 import React from 'react';
 
@@ -68,12 +69,16 @@ export const TripTable: React.FC<TripTableProps> = ({ trips }) => {
                                         itinerary={item.itinerary}
                                     />
                                 </TableCell>
-                                <TableCell>{item.fuel_cost} Fc</TableCell>
-                                <TableCell>{item.revenue} Fc</TableCell>
+                                <TableCell>
+                                    {formatLargeNumber(item.fuel_cost)} Fc
+                                </TableCell>
+                                <TableCell>
+                                    {formatLargeNumber(item.revenue)} Fc
+                                </TableCell>
                                 <TableCell
                                     className={`${item.net_profit < 0 ? 'text-destructive' : 'text-green-500'}`}
                                 >
-                                    {item.net_profit} Fc
+                                    {formatLargeNumber(item.net_profit)} Fc
                                 </TableCell>
                                 <TableCell>{item.perfomed_at}</TableCell>
                                 <TableCell>{ago(item.created_at)}</TableCell>

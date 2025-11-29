@@ -4,6 +4,7 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { Toaster } from './components/ui/sonner';
 import { initializeTheme } from './hooks/use-appearance';
 import { trans } from './lib/trans';
 
@@ -23,6 +24,7 @@ createInertiaApp({
 
         root.render(
             <StrictMode>
+                <Toaster closeButton={true} position="top-right" />
                 <App {...props} />
             </StrictMode>,
         );

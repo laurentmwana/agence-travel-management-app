@@ -63,11 +63,10 @@ export const Pagination = ({
           {/* Prev */}
           <li>
             <Button
-              size="icon"
+              size="xs"
               variant="outline"
               disabled={!items.meta.links[0].url}
               onClick={() => handlePageChange(items.meta.links[0].url)}
-              className="rounded-full h-9 w-9"
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -79,14 +78,9 @@ export const Pagination = ({
               <Button
                 onClick={() => handlePageChange(link.url)}
                 disabled={!link.url}
-                className={`
-                  h-9 px-3 rounded-full text-sm transition text-muted-foreground cursor-pointer hover:border-primary
-                  ${
-                    link.active
-                      ? "bg-primary text-primary-foreground font-semibold shadow"
-                      : "bg-secondary hover:bg-secondary/80"
-                  }
-                `}
+                size="xs"
+                variant={link.active ? "default" : "outline"}
+                className="cursor-pointer"
               >
                 <span dangerouslySetInnerHTML={{ __html: link.label }} />
               </Button>
@@ -96,7 +90,7 @@ export const Pagination = ({
           {/* Next */}
           <li>
             <Button
-              size="icon"
+              size="xs"
               variant="outline"
               disabled={!items.meta.links[items.meta.links.length - 1].url}
               onClick={() =>
@@ -104,7 +98,6 @@ export const Pagination = ({
                   items.meta.links[items.meta.links.length - 1].url
                 )
               }
-              className="rounded-full h-9 w-9"
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
