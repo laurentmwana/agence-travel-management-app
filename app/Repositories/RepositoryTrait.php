@@ -20,4 +20,21 @@ trait RepositoryTrait
                   ->with($criteria)
                   ->count();
       }
+
+      public function finByYearAndMonthAndFilter(string $year, string $month, ?string $search = null, array $criteria = [], array $filters = [], array $sortable = [])
+      {
+            $builder =  $this->model::query()
+                  ->where($criteria)
+                  ->where('created_at', 'like', "%$year-$month%");
+
+            if ($search) {
+                  $builder->where(function ($query) use ($search, $sortable) {
+                        foreach ($sortable as $field) {
+                              $query->orWhere($field, 'like', "%{$search}%");
+                        }
+                  });
+            }
+
+            return $this->filter->orderFromRequest($builder, $filters, $sortable)->paginate();
+      }
 }

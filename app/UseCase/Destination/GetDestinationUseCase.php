@@ -30,6 +30,11 @@ class GetDestinationUseCase
         return $this->repository->findPaginated($filters, $search);
     }
 
+    public function findByYearAndMonth(string $year, string $month)
+    {
+        return $this->repository->findByYearAndMonth($year, $month);
+    }
+
     public function countBy(array $criteria = []): int
     {
         return $this->repository->countBy($criteria);

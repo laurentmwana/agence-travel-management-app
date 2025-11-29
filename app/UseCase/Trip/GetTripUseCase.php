@@ -46,4 +46,14 @@ class GetTripUseCase
     {
         return $this->repository->countBy($criteria);
     }
+
+    public function finByYearAndMonthAndFilter(string $year, string $month, ?string $search = null, array $criteria = [], array $filters = [], array $sortable = [])
+    {
+        return $this->repository->finByYearAndMonthAndFilter($year, $month, $search, $criteria, $filters, $sortable);
+    }
+
+    public function sumRevenueAndTotalCost(string $year, string $month, ?string $search = null, array $criteria = [],array $sortable = [])
+    {
+        return $this->repository->sumRevenueAndTotalCost($year, $month, $search, $criteria, $sortable);
+    }
 }

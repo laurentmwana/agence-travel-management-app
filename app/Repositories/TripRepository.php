@@ -42,4 +42,25 @@ class TripRepository
             }
             return $stats;
       }
+
+      public function sumRevenueAndTotalCost(string $year, string $month, ?string $search = null, array $criteria = [], array $sortable = [])
+      {
+            $builder =  Trip::query()
+                  ->where($criteria)
+                  ->where('created_at', 'like', "%$year-$month%")
+                  ->selectRaw('SUM(net_profit) as total_net_profit, SUM(total_cost) as total_cost');
+
+            if ($search) {
+                  $builder->where(function ($query) use ($search, $sortable) {
+                        foreach ($sortable as $field) {
+                              $query->orWhere($field, 'like', "%{$search}%");
+                        }
+                  });
+            }
+
+            return [
+                  'netProfit' => $builder->value('total_net_profit') ?? 0,
+                  'totalCost'    => $builder->value('total_cost') ?? 0,
+            ];
+      }
 }

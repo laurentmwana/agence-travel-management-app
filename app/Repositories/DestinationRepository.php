@@ -23,4 +23,11 @@ class DestinationRepository
 
         return $this->filter->orderFromRequest($builder, $filters, ['name', 'id'])->paginate();
     }
+
+    public function findByYearAndMonth(string $year, string $month)
+    {
+        return Destination::query()
+            ->where('created_at', 'like', "%$year-$month%")
+            ->paginate();
+    }
 }

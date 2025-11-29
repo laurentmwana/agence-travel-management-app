@@ -32,4 +32,9 @@ class GetItineraryUseCase
     {
         return $this->repository->countBy($criteria);
     }
+
+    public function finByYearAndMonthAndFilter(string $year, string $month, ?string $search = null, array $criteria = [], array $filters = [], array $sortable = [])
+    {
+        return $this->repository->finByYearAndMonthAndFilter($year, $month, $search, $criteria, $filters, $sortable);
+    }
 }
