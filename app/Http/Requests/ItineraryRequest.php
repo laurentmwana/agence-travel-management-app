@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Dto\ItineraryDto;
 use App\Enums\ItineraryTypeEnum;
 use App\Helpers\Hydrator;
+use App\Rules\UniqueDestinationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,13 +26,16 @@ class ItineraryRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->input('id');
+        $startDestination = $this->input('start_destination_id');
+
         return [
             'note' => ['nullable', 'between:10,5000'],
             'type' => ['required', Rule::in(ItineraryTypeEnum::toArray())],
             'is_scheduled' => ['required', 'boolean'],
             'distance_km' => ['required'],
             'start_destination_id' => ['required', 'exists:destinations,id'],
-            'end_destination_id' =>  ['required', 'exists:destinations,id'],
+            'end_destination_id' =>  ['required', 'exists:destinations,id', new UniqueDestinationRule($id, $startDestination)],
         ];
     }
 
