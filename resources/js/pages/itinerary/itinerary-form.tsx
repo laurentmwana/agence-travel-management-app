@@ -33,12 +33,8 @@ export const ItineraryForm: React.FC<ItineraryFormProps> = ({ entity }) => {
         resetAndClearErrors,
     } = useForm({
         id: entity?.id ?? '',
-        note: entity?.note ?? '',
         type: entity?.type ?? '',
         is_scheduled: entity?.is_scheduled?.toString() ?? '0',
-        available_seats: entity?.available_seats ?? '0',
-        price_per_seat: entity?.price_per_seat ?? '0',
-        price_per_person: entity?.price_per_person ?? '0',
         distance_km: entity?.distance_km ?? '0',
         start_destination_id: entity?.start?.id.toString() ?? '',
         end_destination_id: entity?.end?.id.toString() ?? '',
@@ -150,45 +146,6 @@ export const ItineraryForm: React.FC<ItineraryFormProps> = ({ entity }) => {
                         <InputError message={errors.distance_km} />
                     </div>
 
-                    {/* Places disponibles */}
-                    <div className="grid gap-2">
-                        <Label>Places disponibles</Label>
-                        <Input
-                            type="number"
-                            value={data.available_seats}
-                            onChange={(e) =>
-                                setData('available_seats', e.target.value)
-                            }
-                        />
-                        <InputError message={errors.available_seats} />
-                    </div>
-
-                    {/* Prix par siège */}
-                    <div className="grid gap-2">
-                        <Label>Prix par siège</Label>
-                        <Input
-                            type="number"
-                            value={data.price_per_seat}
-                            onChange={(e) =>
-                                setData('price_per_seat', e.target.value)
-                            }
-                        />
-                        <InputError message={errors.price_per_seat} />
-                    </div>
-
-                    {/* Prix par personne */}
-                    <div className="grid gap-2">
-                        <Label>Prix par personne</Label>
-                        <Input
-                            type="number"
-                            value={data.price_per_person}
-                            onChange={(e) =>
-                                setData('price_per_person', e.target.value)
-                            }
-                        />
-                        <InputError message={errors.price_per_person} />
-                    </div>
-
                     {/* Trajet programmé */}
 
                     <div className="grid gap-2">
@@ -202,16 +159,6 @@ export const ItineraryForm: React.FC<ItineraryFormProps> = ({ entity }) => {
                             ]}
                         />
                         <InputError message={errors.is_scheduled} />
-                    </div>
-
-                    {/* Notes */}
-                    <div className="grid gap-2">
-                        <Label>Note</Label>
-                        <Textarea
-                            value={data.note ?? ''}
-                            onChange={(e) => setData('note', e.target.value)}
-                        />
-                        <InputError message={errors.note} />
                     </div>
 
                     <div>

@@ -12,11 +12,7 @@ export type ItineraryType = 'plane' | 'boat' | 'train' | 'bus' | 'car';
 
 export interface Itinerary extends Timestemp {
     id: string;
-    note: string | null;
     is_scheduled: string;
-    available_seats: string;
-    price_per_seat: string;
-    price_per_person: string;
     distance_km: number;
     type: ItineraryType;
     start: Destination;

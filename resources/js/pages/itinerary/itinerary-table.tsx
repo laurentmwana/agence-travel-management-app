@@ -57,9 +57,6 @@ export const ItineraryTable: React.FC<ItineraryTableProps> = ({
                         <TableHeadSortable field="distance_km">
                             Distance
                         </TableHeadSortable>
-                        <TableHeadSortable field="price_per_seat">
-                            Prix
-                        </TableHeadSortable>
                         <TableHeadSortable field="is_scheduled">
                             Programmer
                         </TableHeadSortable>
@@ -92,7 +89,6 @@ export const ItineraryTable: React.FC<ItineraryTableProps> = ({
                                 <TableCell>
                                     {numberToFixed(item.distance_km, 3)} km
                                 </TableCell>
-                                <TableCell>{item.price_per_seat}$</TableCell>
                                 <TableCell>
                                     <Badge
                                         variant={

@@ -1,5 +1,5 @@
 import { Itinerary } from '@/types/model';
-import { Calendar, DollarSign, FileText, MapPin, Users } from 'lucide-react';
+import { Calendar, MapPin } from 'lucide-react';
 import React from 'react';
 import { getItineraryTypeIcon } from '.';
 
@@ -86,52 +86,10 @@ export const ItineraryDetails: React.FC<ItineraryDetailsProps> = ({
                             </div>
                         </div>
                     </div>
-
-                    {/* Informations de prix */}
-                    <div className="rounded-lg border bg-card p-6">
-                        <h2 className="mb-4 flex items-center text-lg font-semibold">
-                            <DollarSign size={20} className="mr-2" />
-                            Tarification
-                        </h2>
-                        <div className="space-y-4 text-sm">
-                            <div className="flex justify-between">
-                                <span className="text-muted-foreground">
-                                    Prix par siège
-                                </span>
-                                <span className="font-medium">
-                                    FC {itinerary.price_per_seat}
-                                </span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-muted-foreground">
-                                    Prix par personne
-                                </span>
-                                <span className="font-medium">
-                                    FC {itinerary.price_per_person}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 {/* Colonne de droite */}
                 <div className="space-y-6">
-                    {/* Capacité */}
-                    <div className="rounded-lg border bg-card p-6">
-                        <h2 className="mb-4 flex items-center text-lg font-semibold">
-                            <Users size={20} className="mr-2" />
-                            Capacité
-                        </h2>
-                        <div className="text-center">
-                            <div className="text-3xl font-bold text-foreground">
-                                {itinerary.available_seats}
-                            </div>
-                            <div className="mt-1 text-sm text-muted-foreground">
-                                sièges disponibles
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Destinations */}
                     <div className="rounded-lg border bg-card p-6">
                         <h2 className="mb-4 flex items-center text-lg font-semibold">
@@ -157,19 +115,6 @@ export const ItineraryDetails: React.FC<ItineraryDetailsProps> = ({
                             </div>
                         </div>
                     </div>
-
-                    {/* Note (si présente) */}
-                    {itinerary.note && (
-                        <div className="rounded-lg border bg-card p-6">
-                            <h2 className="mb-3 flex items-center text-lg font-semibold">
-                                <FileText size={20} className="mr-2" />
-                                Note
-                            </h2>
-                            <p className="rounded-lg bg-muted/50 p-4 text-sm">
-                                {itinerary.note}
-                            </p>
-                        </div>
-                    )}
                 </div>
             </div>
         </div>

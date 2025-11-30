@@ -54,28 +54,9 @@ export const ItineraryHoverCard: React.FC<ItineraryHoverCardProps> = ({
                         </span>
                     </p>
 
-                    {/* PRICING */}
-                    <p className="mb-2 text-sm">
-                        Prix par personne :
-                        <span className="font-medium">
-                            ${itinerary.price_per_person}
-                        </span>
-                    </p>
+                
 
-                    <p className="mb-2 text-sm">
-                        Prix par siège :
-                        <span className="font-medium">
-                            ${itinerary.price_per_seat}
-                        </span>
-                    </p>
-
-                    {/* SEATS */}
-                    <p className="mb-2 text-sm">
-                        Sièges disponibles :
-                        <span className="font-medium">
-                            {itinerary.available_seats}
-                        </span>
-                    </p>
+               
 
                     {/* CREATED */}
                     <p className="mt-3 text-xs text-muted-foreground">
