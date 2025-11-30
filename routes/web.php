@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ApiBaseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ItineraryController;
+use App\Http\Controllers\TaxController;
 use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -46,6 +47,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('trip', TripController::class)
         ->parameter('trip', 'id');
     // END TRIP ROUTE
+
+    // TAX ROUTE
+    Route::get('tax', [TaxController::class, 'index'])->name('tax.index');
+    Route::post('tax/store', [TaxController::class, 'store'])->name('tax.store');
+    Route::put('tax/{id}/update', [TaxController::class, 'update'])->name('tax.update');
+    Route::delete('tax/{id}/destroy', [TaxController::class, 'destroy'])->name('tax.destroy');
+    // END DESTINATION ROUTE 
 
 });
 
