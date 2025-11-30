@@ -9,9 +9,6 @@ class ItineraryDto
       private string|null $note;
       private ItineraryTypeEnum $type;
       private bool $isScheduled;
-      private int $availableSeats;
-      private float $pricePerSeat;
-      private float $pricePerPerson;
       private string|null $distanceKm;
       private $startDestinationId;
       private $endDestinationId;
@@ -83,75 +80,6 @@ class ItineraryDto
       public function setIsScheduled(bool $isScheduled): self
       {
             $this->isScheduled = $isScheduled;
-            return $this;
-      }
-
-      /**
-       * Get the value of availableSeats
-       *
-       * @return int
-       */
-      public function getAvailableSeats(): int
-      {
-            return $this->availableSeats;
-      }
-
-      /**
-       * Set the value of availableSeats
-       *
-       * @param int $availableSeats
-       *
-       * @return self
-       */
-      public function setAvailableSeats(int $availableSeats): self
-      {
-            $this->availableSeats = $availableSeats;
-            return $this;
-      }
-
-      /**
-       * Get the value of pricePerSeat
-       *
-       * @return float
-       */
-      public function getPricePerSeat(): float
-      {
-            return $this->pricePerSeat;
-      }
-
-      /**
-       * Set the value of pricePerSeat
-       *
-       * @param float $pricePerSeat
-       *
-       * @return self
-       */
-      public function setPricePerSeat(float $pricePerSeat): self
-      {
-            $this->pricePerSeat = $pricePerSeat;
-            return $this;
-      }
-
-      /**
-       * Get the value of pricePerPerson
-       *
-       * @return float
-       */
-      public function getPricePerPerson(): float
-      {
-            return $this->pricePerPerson;
-      }
-
-      /**
-       * Set the value of pricePerPerson
-       *
-       * @param float $pricePerPerson
-       *
-       * @return self
-       */
-      public function setPricePerPerson(float $pricePerPerson): self
-      {
-            $this->pricePerPerson = $pricePerPerson;
             return $this;
       }
 
