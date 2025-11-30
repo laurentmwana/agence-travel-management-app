@@ -53,11 +53,6 @@ export const ItineraryHoverCard: React.FC<ItineraryHoverCardProps> = ({
                             {itinerary.distance_km} km
                         </span>
                     </p>
-
-                
-
-               
-
                     {/* CREATED */}
                     <p className="mt-3 text-xs text-muted-foreground">
                         Créé il y a {ago(itinerary.created_at)}

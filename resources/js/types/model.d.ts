@@ -36,7 +36,7 @@ export interface Trip extends Timestemp {
 export interface Tax extends Timestemp {
     id: string;
     name: string;
-    id: string;
+    description: string;
     amount: number;
 }
 

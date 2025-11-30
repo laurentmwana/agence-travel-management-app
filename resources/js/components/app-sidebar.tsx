@@ -14,9 +14,17 @@ import destination from '@/routes/destination';
 import itinerary from '@/routes/itinerary';
 import tax from '@/routes/tax';
 import trip from '@/routes/trip';
+import liter from '@/routes/liter';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { DollarSign, LayoutGrid, Map, PlaneLanding, Share } from 'lucide-react';
+import {
+    DollarSign,
+    Fuel,
+    LayoutGrid,
+    Map,
+    PlaneLanding,
+    Share,
+} from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -46,6 +54,12 @@ const mainNavItems: NavItem[] = [
         title: 'Taxes',
         href: tax.index(),
         icon: DollarSign,
+    },
+
+    {
+        title: '1 Litre',
+        href: liter.index(),
+        icon: Fuel,
     },
 ];
 
