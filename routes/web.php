@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ApiBaseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ItineraryController;
+use App\Http\Controllers\LiterController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\TripController;
 use Illuminate\Support\Facades\Route;
@@ -53,7 +54,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('tax/store', [TaxController::class, 'store'])->name('tax.store');
     Route::put('tax/{id}/update', [TaxController::class, 'update'])->name('tax.update');
     Route::delete('tax/{id}/destroy', [TaxController::class, 'destroy'])->name('tax.destroy');
-    // END DESTINATION ROUTE 
+    // END TAX ROUTE 
+
+
+       // LITER ROUTE
+    Route::get('price-unit-liter', [LiterController::class, 'index'])->name('liter.index');
+    Route::post('price-unit-liter/store', [LiterController::class, 'store'])->name('liter.store');
+    // END LITER ROUTE 
 
 });
 
