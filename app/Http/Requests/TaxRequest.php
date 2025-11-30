@@ -25,7 +25,7 @@ class TaxRequest extends FormRequest
     {
         return [
             'name' => ['required', 'between:2,50'],
-            'amount' => ['required'],
+            'amount' => ['required', 'regex:/^\d+(\.\d+)?$/', 'min:1'],
             'description' => ['nullable', 'between:10,1000'],
         ];
     }
