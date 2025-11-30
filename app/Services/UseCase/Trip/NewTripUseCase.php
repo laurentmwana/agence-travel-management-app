@@ -21,6 +21,7 @@ class NewTripUseCase
                 'revenue' => $dto->getRevenue(),
                 'net_profit' => $dto->getNetProfit(),
                 'fuel_cost' => $dto->getFuelCost(),
+                'fuel_quantity' => $dto->getFuelQuantity(),
                 'other_expenses' => $dto->getOtherExpenses(),
                 'itinerary_id' => $dto->getItineraryId(),
                 ...$calculates

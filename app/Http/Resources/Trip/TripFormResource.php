@@ -23,6 +23,7 @@ class TripFormResource extends JsonResource
             'revenue' => $this->resource->revenue,
             'net_profit' => $this->resource->net_profit,
             'fuel_cost' => $this->resource->fuel_cost,
+            'fuel_quantity' => $this->resource->fuel_quantity,
             'other_expenses' => $this->resource->other_expenses,
             'itinerary' => new ItineraryResource($this->resource->itinerary),
         ];

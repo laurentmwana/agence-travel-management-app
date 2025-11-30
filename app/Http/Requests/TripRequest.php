@@ -28,6 +28,7 @@ class TripRequest extends FormRequest
             'observation' => ['nullable', 'between:10,5000'],
             'revenue' => ['required'],
             'fuel_cost' => ['required'],
+            'fuel_quantity' => ['required'],
             'other_expenses' => ['required'],
             'itinerary_id' => ['required', 'exists:itineraries,id'],
         ];

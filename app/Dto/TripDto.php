@@ -10,6 +10,7 @@ class TripDto
       private float $revenue = 0;
       private float $netProfit = 0;
       private float $fuelCost = 0;
+      private float $fuelQuantity;
       private float $otherExpenses = 0;
       private int $itineraryId;
 
@@ -148,6 +149,30 @@ class TripDto
       public function setFuelCost(float $fuelCost): self
       {
             $this->fuelCost = $fuelCost;
+            return $this;
+      }
+
+
+      /**
+       * Get the value of fuelQuantity
+       *
+       * @return float
+       */
+      public function getFuelQuantity(): float
+      {
+            return $this->fuelQuantity;
+      }
+
+      /**
+       * Set the value of fuelQuantity
+       *
+       * @param float $fuelQuantity
+       *
+       * @return self
+       */
+      public function setFuelQuantity(float $fuelQuantity): self
+      {
+            $this->fuelQuantity = $fuelQuantity;
             return $this;
       }
 

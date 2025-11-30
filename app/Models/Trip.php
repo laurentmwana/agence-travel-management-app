@@ -16,6 +16,7 @@ class Trip extends Model
         'revenue',
         'net_profit',
         'fuel_cost',
+        'fuel_quantity',
         'other_expenses',
         'itinerary_id',
     ];

@@ -14,11 +14,13 @@ class UpdateTripUseCase
     {
         return DB::transaction(function () use ($dto, $trip) {
             $calculates = $this->calculate->handle($dto);
+
             $trip->update([
                 'perfomed_at' => $dto->getPerfomedAt(),
                 'observation' => $dto->getObservation(),
                 'revenue' => $dto->getRevenue(),
                 'fuel_cost' => $dto->getFuelCost(),
+                'fuel_quantity' => $dto->getFuelQuantity(),
                 'other_expenses' => $dto->getOtherExpenses(),
                 'itinerary_id' => $dto->getItineraryId(),
                 ...$calculates

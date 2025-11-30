@@ -17,13 +17,14 @@ class TripItemResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-                'id' => $this->resource->id,
+            'id' => $this->resource->id,
             'perfomed_at' => $this->resource->perfomed_at,
             'observation' => $this->resource->observation,
             'total_cost' => $this->resource->total_cost,
             'revenue' => $this->resource->revenue,
             'net_profit' => $this->resource->net_profit,
             'fuel_cost' => $this->resource->fuel_cost,
+            'fuel_quantity' => $this->resource->fuel_quantity,
             'other_expenses' => $this->resource->other_expenses,
             'itinerary' => new ItineraryResource($this->resource->itinerary),
             'updated_at' => $this->resource->updated_at,
