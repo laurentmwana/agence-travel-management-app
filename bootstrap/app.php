@@ -25,22 +25,22 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
-            $status = $response->getStatusCode();
-            $isProdudction = !app()->environment(['local', 'testing']) && in_array($status, [500, 503, 404, 403]);
+        // $exceptions->respond(function (Response $response, Throwable $exception, Request $request) {
+        //     $status = $response->getStatusCode();
+        //     $isProdudction = !app()->environment(['local', 'testing']) && in_array($status, [500, 503, 404, 403]);
 
-            if ($isProdudction) {
-                return inertia('error', [
-                    'status'  => $status,
-                ])->toResponse($request)->setStatusCode($status);
-            }
+        //     if ($isProdudction) {
+        //         return inertia('error', [
+        //             'status'  => $status,
+        //         ])->toResponse($request)->setStatusCode($status);
+        //     }
 
-            if ($status === 419) {
-                return back()->with([
-                    'warning' => 'The page expired, please try again.',
-                ]);
-            }
+        //     if ($status === 419) {
+        //         return back()->with([
+        //             'warning' => 'The page expired, please try again.',
+        //         ]);
+        //     }
 
-            return $response;
-        });
+        //     return $response;
+        // });
     })->create();
