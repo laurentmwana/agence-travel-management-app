@@ -16,15 +16,16 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::firstOrCreate(
-            ['email' => 'test@example.com'],
+            ['email' => 'muteba@demo.com'],
             [
-                'name' => 'Test User',
-                'password' => 'password',
+                'name' => 'Muteba',
+                'password' => 'muteba123',
                 'email_verified_at' => now(),
             ]
         );
 
         $this->call([
+            TaxSeeder::class,
             DestinationSeeder::class,
             ItinerarySeeder::class,
             TripSeeder::class,
