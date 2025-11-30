@@ -13,9 +13,6 @@ class Itinerary extends Model
         'note',
         'type',
         'is_scheduled',
-        'available_seats',
-        'price_per_seat',
-        'price_per_person',
         'distance_km',
         'start_destination_id',
         'end_destination_id'

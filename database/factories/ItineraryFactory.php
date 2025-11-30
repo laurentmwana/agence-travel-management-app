@@ -18,12 +18,8 @@ class ItineraryFactory extends Factory
     public function definition(): array
     {
         return [
-            'distance_km' => fake()->randomNumber() * 100,
-            'price_per_person' => fake()->randomNumber() * 10,
-            'price_per_seat' => 10,
-            'available_seats' => fake()->randomDigitNotZero(),
+            'distance_km' => fake()->randomNumber() * 3,
             'is_scheduled' => fake()->randomElement([true, false]),
-            'note' => fake()->text(),
             'type' => fake()->randomElement(ItineraryTypeEnum::toArray()),
         ];
     }
