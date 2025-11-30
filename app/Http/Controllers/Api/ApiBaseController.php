@@ -6,8 +6,8 @@ use App\Enums\ItineraryTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Destination\DestinationFetchResource;
 use App\Http\Resources\Itinerary\ItineraryFetchResource;
-use App\UseCase\Destination\GetDestinationUseCase;
-use App\UseCase\Itinerary\GetItineraryUseCase;
+use App\Services\UseCase\Destination\GetDestinationUseCase;
+use App\Services\UseCase\Itinerary\GetItineraryUseCase;
 
 class ApiBaseController extends Controller
 {

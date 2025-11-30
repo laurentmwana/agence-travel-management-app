@@ -10,7 +10,6 @@ class Itinerary extends Model
     use HasFactory;
 
     protected $fillable = [
-        'note',
         'type',
         'is_scheduled',
         'distance_km',

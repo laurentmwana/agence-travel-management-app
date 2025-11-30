@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCase\Destination;
+namespace App\Services\UseCase\Destination;
 
 use App\Models\Destination;
 use Illuminate\Support\Facades\DB;

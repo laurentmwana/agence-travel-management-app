@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCase\Destination;
+namespace App\Services\UseCase\Destination;
 
 use App\Dto\DestinationDto;
 use App\Models\Destination;

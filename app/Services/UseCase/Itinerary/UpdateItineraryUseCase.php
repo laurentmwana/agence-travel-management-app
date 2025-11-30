@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCase\Itinerary;
+namespace App\Services\UseCase\Itinerary;
 
 use App\Dto\ItineraryDto;
 use App\Models\Itinerary;
@@ -12,12 +12,9 @@ class UpdateItineraryUseCase
     {
         return DB::transaction(function () use ($dto, $itinerary) {
             $itinerary->update([
-           'note' => $dto->getNote(),
+                'note' => $dto->getNote(),
                 'type' => $dto->getType()->value,
                 'is_scheduled' => $dto->getIsScheduled(),
-                'available_seats' => $dto->getAvailableSeats(),
-                'price_per_seat' => $dto->getPricePerSeat(),
-                'price_per_person' => $dto->getPricePerPerson(),
                 'distance_km' => $dto->getDistanceKm(),
                 'start_destination_id' => $dto->getStartDestinationId(),
                 'end_destination_id' => $dto->getEndDestinationId(),

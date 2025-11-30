@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCase\Trip;
+namespace App\Services\UseCase\Trip;
 
 use App\Dto\TripDto;
 use App\Models\Trip;

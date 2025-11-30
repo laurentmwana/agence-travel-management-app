@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DestinationRequest;
 use App\Http\Resources\Destination\DestinationResource;
-use App\UseCase\Destination\DeleteDestinationUseCase;
-use App\UseCase\Destination\GetDestinationUseCase;
-use App\UseCase\Destination\NewDestinationUseCase;
-use App\UseCase\Destination\UpdateDestinationUseCase;
+use App\Services\UseCase\Destination\DeleteDestinationUseCase;
+use App\Services\UseCase\Destination\GetDestinationUseCase;
+use App\Services\UseCase\Destination\NewDestinationUseCase;
+use App\Services\UseCase\Destination\UpdateDestinationUseCase;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCase\Itinerary;
+namespace App\Services\UseCase\Itinerary;
 
 use App\Models\Itinerary;
 use Illuminate\Support\Facades\DB;

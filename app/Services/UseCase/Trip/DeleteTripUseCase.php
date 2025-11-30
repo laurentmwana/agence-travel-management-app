@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCase\Trip;
+namespace App\Services\UseCase\Trip;
 
 use App\Models\Trip;
 use Illuminate\Support\Facades\DB;

@@ -6,17 +6,17 @@ use App\Http\Requests\ItineraryRequest;
 use App\Http\Resources\Itinerary\ItineraryFormResource;
 use App\Http\Resources\Itinerary\ItineraryItemResource;
 use App\Http\Resources\Itinerary\ItineraryResource;
-use App\UseCase\Itinerary\DeleteItineraryUseCase;
-use App\UseCase\Itinerary\GetItineraryUseCase;
-use App\UseCase\Itinerary\NewItineraryUseCase;
-use App\UseCase\Itinerary\UpdateItineraryUseCase;
+use App\Services\UseCase\Itinerary\DeleteItineraryUseCase;
+use App\Services\UseCase\Itinerary\GetItineraryUseCase;
+use App\Services\UseCase\Itinerary\NewItineraryUseCase;
+use App\Services\UseCase\Itinerary\UpdateItineraryUseCase;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class ItineraryController extends Controller
 {
-    private const SORTABLE_FIELD = ['type', 'is_scheduled', 'price_per_seat', 'distance_km'];
+    private const SORTABLE_FIELD = ['type', 'is_scheduled', 'distance_km'];
 
     public function __construct(private GetItineraryUseCase $getItinerary) {}
 

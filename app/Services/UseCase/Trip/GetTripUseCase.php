@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UseCase\Trip;
+namespace App\Services\UseCase\Trip;
 
 use App\Repositories\TripRepository;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +52,7 @@ class GetTripUseCase
         return $this->repository->finByYearAndMonthAndFilter($year, $month, $search, $criteria, $filters, $sortable);
     }
 
-    public function sumRevenueAndTotalCost(string $year, string $month, ?string $search = null, array $criteria = [],array $sortable = [])
+    public function sumRevenueAndTotalCost(string $year, string $month, ?string $search = null, array $criteria = [], array $sortable = [])
     {
         return $this->repository->sumRevenueAndTotalCost($year, $month, $search, $criteria, $sortable);
     }
