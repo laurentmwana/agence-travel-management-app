@@ -27,6 +27,7 @@ export interface Trip extends Timestemp {
     revenue: number;
     net_profit: number;
     fuel_cost: number;
+    fuel_quantity: number;
     other_expenses: number;
     itinerary: Itinerary;
 }

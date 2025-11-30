@@ -3,7 +3,6 @@ import { ButtonLoader } from '@/components/ui/button-loader';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { SelectGenerate } from '@/components/ui/select-generate';
-import { Textarea } from '@/components/ui/textarea';
 import { getItineraryTypeIcon } from '@/features/itinerary';
 import { useFetch } from '@/hooks/use-fetch';
 import itinerary from '@/routes/itinerary';
@@ -130,7 +129,7 @@ export const ItineraryForm: React.FC<ItineraryFormProps> = ({ entity }) => {
                                 }) ?? []
                             }
                         />
-                        <InputError message={errors.end_destination_id} />
+                        <InputError message={errors.type} />
                     </div>
 
                     {/* Distance */}

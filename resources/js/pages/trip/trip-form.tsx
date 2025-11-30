@@ -34,6 +34,7 @@ export const TripForm: React.FC<Props> = ({ entity }) => {
         total_cost: entity?.total_cost ?? 0,
         other_expenses: entity?.other_expenses ?? 0,
         fuel_cost: entity?.fuel_cost ?? 0,
+        fuel_quantity: entity?.fuel_quantity ?? 0,
         revenue: entity?.revenue ?? 0,
         observation: entity?.observation ?? '',
         perfomed_at: entity?.perfomed_at ?? '',
@@ -106,6 +107,19 @@ export const TripForm: React.FC<Props> = ({ entity }) => {
                             }
                         />
                         <InputError message={errors.perfomed_at} />
+                    </div>
+
+                      {/* Quantité du carburant */}
+                    <div className="grid gap-2">
+                        <Label>Quantité du carburant</Label>
+                        <Input
+                            type="number"
+                            value={data.fuel_quantity}
+                            onChange={(e) =>
+                                setData('fuel_quantity', parseFloat(e.target.value))
+                            }
+                        />
+                        <InputError message={errors.fuel_quantity} />
                     </div>
 
                     {/* Coût du carburant */}
