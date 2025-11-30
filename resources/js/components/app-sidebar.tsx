@@ -1,4 +1,3 @@
-import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
@@ -13,10 +12,11 @@ import {
 import { dashboard } from '@/routes';
 import destination from '@/routes/destination';
 import itinerary from '@/routes/itinerary';
+import tax from '@/routes/tax';
 import trip from '@/routes/trip';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { LayoutGrid, Map, PlaneLanding, Share } from 'lucide-react';
+import { DollarSign, LayoutGrid, Map, PlaneLanding, Share } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -41,9 +41,13 @@ const mainNavItems: NavItem[] = [
         href: trip.index(),
         icon: PlaneLanding,
     },
-];
 
-const footerNavItems: NavItem[] = [];
+    {
+        title: 'Taxes',
+        href: tax.index(),
+        icon: DollarSign,
+    },
+];
 
 export function AppSidebar() {
     return (
@@ -65,7 +69,6 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>

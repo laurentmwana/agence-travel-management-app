@@ -32,6 +32,14 @@ export interface Trip extends Timestemp {
     itinerary: Itinerary;
 }
 
+
+export interface Tax extends Timestemp {
+    id: string;
+    name: string;
+    id: string;
+    amount: number;
+}
+
 export interface PaginationCollection<T> {
     data: T[];
     links: {
