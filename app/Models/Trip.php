@@ -13,12 +13,25 @@ class Trip extends Model
         'perfomed_at',
         'observation',
         'total_cost',
-        'revenue',
+        'total_tax',
+        'affretement_total',
+        'total_fuel_price',
         'net_profit',
-        'fuel_cost',
+        'fuel_price',
         'fuel_quantity',
         'other_expenses',
         'itinerary_id',
+        'duration_hours',
+        'acmi',
+        'total_expenses',
+        'net_loss',
+        'affretements',
+    ];
+
+    protected $casts = [
+        'other_expenses' => 'json',
+        'affretements' => 'json',
+        'perfomed_at' => 'datetime',
     ];
 
     public function itinerary()

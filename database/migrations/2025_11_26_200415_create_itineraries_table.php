@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('itineraries', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ItineraryTypeEnum::toArray())->default(ItineraryTypeEnum::PLANE->value);
-            $table->integer('distance_km');
+            $table->bigInteger('distance_km');
             $table->decimal('price_per_person', 10, 2);
             $table->decimal('price_per_seat', 10, 2);
             $table->integer('available_seats');
