@@ -12,9 +12,9 @@ import {
 import { dashboard } from '@/routes';
 import destination from '@/routes/destination';
 import itinerary from '@/routes/itinerary';
+import liter from '@/routes/liter';
 import tax from '@/routes/tax';
 import trip from '@/routes/trip';
-import liter from '@/routes/liter';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import {
@@ -23,9 +23,11 @@ import {
     LayoutGrid,
     Map,
     PlaneLanding,
+    PlaneTakeoff,
     Share,
 } from 'lucide-react';
 import AppLogo from './app-logo';
+import acmi from '@/routes/acmi';
 
 const mainNavItems: NavItem[] = [
     {
@@ -60,6 +62,12 @@ const mainNavItems: NavItem[] = [
         title: '1 Litre',
         href: liter.index(),
         icon: Fuel,
+    },
+
+    {
+        title: 'ACMI',
+        href: acmi.index(),
+        icon: PlaneTakeoff,
     },
 ];
 

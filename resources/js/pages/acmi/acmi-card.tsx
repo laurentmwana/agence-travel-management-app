@@ -7,7 +7,7 @@ import {
     CardTitle,
 } from '@/components/ui/card';
 import { DefaultValueForm } from '@/features/default-value-form';
-import liter from '@/routes/liter';
+import acmi from '@/routes/acmi';
 import { Pen } from 'lucide-react';
 import React from 'react';
 
@@ -15,7 +15,7 @@ interface Props {
     amount: number;
 }
 
-export const LiterCard: React.FC<Props> = ({ amount }) => {
+export const AcmiCard: React.FC<Props> = ({ amount }) => {
     const [open, setOpen] = React.useState<boolean>(false);
 
     return (
@@ -23,7 +23,7 @@ export const LiterCard: React.FC<Props> = ({ amount }) => {
             <Card className="shadow-none">
                 <CardHeader className="space-y-1 text-center">
                     <CardTitle className="text-lg font-semibold text-muted-foreground">
-                        1 litre équivaut à
+                        1 heure équivaut à
                     </CardTitle>
 
                     <CardDescription className="text-3xl font-bold text-primary">
@@ -44,12 +44,12 @@ export const LiterCard: React.FC<Props> = ({ amount }) => {
             </Card>
 
             <DefaultValueForm
-                key="price_unit_liter"
+                key="price_acmi"
                 amount={amount}
                 open={open}
                 setOpen={setOpen}
-                url={liter.store().url}
-                title="Mettre à jour le montant de litre"
+                url={acmi.store().url}
+                title="Mettre à jour le montant d'acmi"
             />
         </div>
     );
