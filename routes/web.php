@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcmiController;
 use App\Http\Controllers\Api\ApiBaseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DestinationController;
@@ -57,11 +58,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // END TAX ROUTE 
 
 
-       // LITER ROUTE
+    // LITER ROUTE
     Route::get('price-unit-liter', [LiterController::class, 'index'])->name('liter.index');
     Route::post('price-unit-liter/store', [LiterController::class, 'store'])->name('liter.store');
     // END LITER ROUTE 
 
+    // ACMI ROUTE
+    Route::get('price-acmi', [AcmiController::class, 'index'])->name('acmi.index');
+    Route::post('price-acmi/store', [AcmiController::class, 'store'])->name('acmi.store');
+    // END ACMI ROUTE 
 });
 
 require __DIR__ . '/settings.php';

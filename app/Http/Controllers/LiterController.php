@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\UseCase\Liter\WriteFileLiterUseCase;
+use App\Services\UseCase\Other\LiterUseCase;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class LiterController extends Controller
 {
-    public function __construct(private WriteFileLiterUseCase $writeLiter) {}
+    public function __construct(private LiterUseCase $writeLiter) {}
 
     /**
      * Display a listing of the resource.

@@ -3,7 +3,8 @@
 namespace App\Services\UseCase\Trip;
 
 use App\Dto\TripDto;
-use App\Services\UseCase\Liter\WriteFileLiterUseCase;
+use App\Services\UseCase\Other\AcmiUseCase;
+use App\Services\UseCase\Other\LiterUseCase;
 use App\Services\UseCase\Tax\GetTaxUseCase;
 
 class CalculateTripUseCase
@@ -11,7 +12,8 @@ class CalculateTripUseCase
       private const ACMI_PER_HOURS = 2100;
 
       public function __construct(
-            private WriteFileLiterUseCase $liter,
+            private LiterUseCase $liter,
+            private AcmiUseCase $acmi,
             private GetTaxUseCase $tax
       ) {}
 
