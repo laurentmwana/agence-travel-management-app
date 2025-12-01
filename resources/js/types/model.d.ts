@@ -19,19 +19,29 @@ export interface Itinerary extends Timestemp {
     end: Destination;
 }
 
+export interface JsonModel {
+    name: string;
+    amount: number;
+}
+
 export interface Trip extends Timestemp {
     id: string;
     perfomed_at: string;
     observation: string | null;
     total_cost: number;
-    revenue: number;
     net_profit: number;
-    fuel_cost: number;
+    net_loss: number;
     fuel_quantity: number;
-    other_expenses: number;
+    fuel_price: number;
+    acmi: number;
+    other_expenses: JsonModel[];
+    affretements: JsonModel[];
+    duration_hours: number;
+    total_tax: number;
+    total_expenses: number;
+    affretement_total: number;
     itinerary: Itinerary;
 }
-
 
 export interface Tax extends Timestemp {
     id: string;

@@ -44,17 +44,14 @@ export const TripTable: React.FC<TripTableProps> = ({ trips }) => {
                 <TableHeader>
                     <TableRow>
                         <TableHead>Itinéraire</TableHead>
-                        <TableHeadSortable field="fuel_cost">
-                            Coût du carburant
+                        <TableHeadSortable field="fuel_price">
+                            Carburant
                         </TableHeadSortable>
-                        <TableHeadSortable field="revenue">
-                            Recette
-                        </TableHeadSortable>
+                        <TableHeadSortable field="acmi">ACMI</TableHeadSortable>
                         <TableHeadSortable field="net_profit">
-                            Net Recette
+                            Bénéfice Net
                         </TableHeadSortable>
-                        <TableHead>Départ</TableHead>
-
+                        <TableHead>Heures</TableHead>
                         <TableHead>Créer</TableHead>
                         <TableHead className="text-end">Actions</TableHead>
                     </TableRow>
@@ -70,17 +67,17 @@ export const TripTable: React.FC<TripTableProps> = ({ trips }) => {
                                     />
                                 </TableCell>
                                 <TableCell>
-                                    {formatLargeNumber(item.fuel_cost)} Fc
+                                    {formatLargeNumber(item.fuel_price)}$
                                 </TableCell>
                                 <TableCell>
-                                    {formatLargeNumber(item.revenue)} Fc
+                                    {formatLargeNumber(item.acmi)}$
                                 </TableCell>
                                 <TableCell
                                     className={`${item.net_profit < 0 ? 'text-destructive' : 'text-green-500'}`}
                                 >
-                                    {formatLargeNumber(item.net_profit)} Fc
+                                    {formatLargeNumber(item.net_profit)}$
                                 </TableCell>
-                                <TableCell>{item.perfomed_at}</TableCell>
+                                <TableCell>{item.duration_hours}</TableCell>
                                 <TableCell>{ago(item.created_at)}</TableCell>
                                 <TableCell>
                                     <CollectionActionUrl

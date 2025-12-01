@@ -1,3 +1,4 @@
+import { Separator } from '@/components/ui/separator';
 import { formatDate } from '@/lib/date';
 import { formatCurrency } from '@/lib/number';
 import type { Trip } from '@/types/model';
@@ -6,9 +7,11 @@ import {
     DollarSign,
     FileText,
     Fuel,
+    Layers,
     MapPin,
     PieChart,
     Receipt,
+    Timer,
 } from 'lucide-react';
 import type React from 'react';
 import { getItineraryTypeIcon } from '../itinerary';
@@ -34,12 +37,14 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                 {trip.itinerary.start.name} →
                                 {trip.itinerary.end.name}
                             </h1>
+
                             <p className="mt-1 flex items-center space-x-2 text-sm text-muted-foreground">
                                 <Calendar size={16} />
                                 <span>{formatDate(trip.perfomed_at)}</span>
                             </p>
                         </div>
                     </div>
+
                     <div className="text-right">
                         <div className="text-sm text-muted-foreground">
                             Distance
@@ -47,29 +52,29 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                         <div className="text-sm font-bold">
                             {trip.itinerary.distance_km} km
                         </div>
+
+                        <div className="mt-2 flex items-center justify-end space-x-2 text-sm">
+                            <Timer size={14} />
+                            <span className="font-medium">
+                                {trip.duration_hours} h
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Grille principale */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-                {/* Colonne de gauche - Informations financières */}
+                {/* Colonne gauche */}
                 <div className="space-y-6 lg:col-span-2">
-                    {/* Carte des indicateurs financiers */}
+                    {/* Performances financières */}
                     <div className="rounded-lg border bg-card p-6">
                         <h2 className="mb-4 flex items-center text-lg font-semibold">
                             <DollarSign size={20} className="mr-2" />
                             Performances financières
                         </h2>
+
                         <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-3">
-                            <div className="rounded-lg border bg-muted/50 p-4 text-center">
-                                <div className="mb-1 text-sm font-medium text-muted-foreground">
-                                    Revenu
-                                </div>
-                                <div className="font-bold">
-                                    {formatCurrency(trip.revenue)}
-                                </div>
-                            </div>
                             <div className="rounded-lg border bg-muted/50 p-4 text-center">
                                 <div className="mb-1 text-sm font-medium text-muted-foreground">
                                     Coût total
@@ -78,12 +83,22 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     {formatCurrency(trip.total_cost)}
                                 </div>
                             </div>
+
                             <div className="rounded-lg border bg-muted/50 p-4 text-center">
                                 <div className="mb-1 text-sm font-medium text-muted-foreground">
                                     Profit net
                                 </div>
                                 <div className="font-bold">
                                     {formatCurrency(trip.net_profit)}
+                                </div>
+                            </div>
+
+                            <div className="rounded-lg border bg-muted/50 p-4 text-center">
+                                <div className="mb-1 text-sm font-medium text-muted-foreground">
+                                    Perte nette
+                                </div>
+                                <div className="font-bold">
+                                    {formatCurrency(trip.net_loss)}
                                 </div>
                             </div>
                         </div>
@@ -95,18 +110,33 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                             <PieChart size={20} className="mr-2" />
                             Détail des dépenses
                         </h2>
+
                         <div className="space-y-4 text-sm">
+                            {/* Coût carburant */}
                             <div className="flex items-center justify-between rounded-lg bg-muted/50 p-4">
                                 <div className="flex items-center space-x-3">
                                     <Fuel size={20} />
                                     <span className="font-medium">
-                                        Coût carburant
+                                        Carburant ({trip.fuel_quantity} L)
                                     </span>
                                 </div>
                                 <span className="font-bold">
-                                    {formatCurrency(trip.fuel_cost)}
+                                    {formatCurrency(trip.fuel_price)}
                                 </span>
                             </div>
+
+                            {/* Taxes */}
+                            <div className="flex items-center justify-between rounded-lg bg-muted/50 p-4">
+                                <div className="flex items-center space-x-3">
+                                    <Receipt size={20} />
+                                    <span className="font-medium">Taxes</span>
+                                </div>
+                                <span className="font-bold">
+                                    {formatCurrency(trip.total_tax)}
+                                </span>
+                            </div>
+
+                            {/* Autres dépenses */}
                             <div className="flex items-center justify-between rounded-lg bg-muted/50 p-4">
                                 <div className="flex items-center space-x-3">
                                     <Receipt size={20} />
@@ -115,21 +145,77 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     </span>
                                 </div>
                                 <span className="font-bold">
-                                    {formatCurrency(trip.other_expenses)}
+                                    {formatCurrency(trip.total_expenses)}
                                 </span>
+                            </div>
+
+                            <div className="rounded-lg bg-muted/50 p-4">
+                                <div className="flex flex-wrap items-center justify-between gap-2">
+                                    <div className="flex items-center space-x-3">
+                                        <Layers size={20} />
+                                        <span className="font-medium">
+                                            Autres dépenses
+                                        </span>
+                                    </div>
+                                    <span className="font-bold">
+                                        {formatCurrency(trip.total_expenses)}
+                                    </span>
+                                </div>
+                                <Separator className="my-4" />
+
+                                {trip.other_expenses.map((expense, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-center justify-between py-1 text-xs"
+                                    >
+                                        <span>{expense.name}</span>
+                                        <span>
+                                            {formatCurrency(expense.amount)}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Affrètement */}
+                            <div className="rounded-lg bg-muted/50 p-4">
+                                <div className="flex flex-wrap items-center justify-between gap-2">
+                                    <div className="flex items-center space-x-3">
+                                        <Layers size={20} />
+                                        <span className="font-medium">
+                                            Total affrètements
+                                        </span>
+                                    </div>
+                                    <span className="font-bold">
+                                        {formatCurrency(trip.affretement_total)}
+                                    </span>
+                                </div>
+                                <Separator className="my-4" />
+
+                                {trip.affretements.map((affretement, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-center justify-between py-1 text-xs"
+                                    >
+                                        <span>{affretement.name}</span>
+                                        <span>
+                                            {formatCurrency(affretement.amount)}
+                                        </span>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Colonne de droite - Informations du trajet */}
+                {/* Colonne droite */}
                 <div className="space-y-6">
-                    {/* Informations de l'itinéraire */}
+                    {/* Détails du trajet */}
                     <div className="rounded-lg border bg-card p-6">
                         <h2 className="mb-4 flex items-center text-lg font-semibold">
                             <MapPin size={20} className="mr-2" />
                             Détails du trajet
                         </h2>
+
                         <div className="space-y-4 text-sm">
                             <div className="flex justify-between">
                                 <span className="text-muted-foreground">
@@ -139,22 +225,7 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     {trip.itinerary.type}
                                 </span>
                             </div>
-                            <div className="flex justify-between">
-                                <span className="text-muted-foreground">
-                                    Sièges disponibles
-                                </span>
-                                <span className="font-medium">
-                                    {trip.itinerary.available_seats}
-                                </span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-muted-foreground">
-                                    Prix par siège
-                                </span>
-                                <span className="font-medium">
-                                    ${trip.itinerary.price_per_seat}
-                                </span>
-                            </div>
+
                             <div className="flex justify-between">
                                 <span className="text-muted-foreground">
                                     Programmé
@@ -169,6 +240,15 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     {trip.itinerary.is_scheduled
                                         ? 'Oui'
                                         : 'Non'}
+                                </span>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <span className="text-muted-foreground">
+                                    ACMI
+                                </span>
+                                <span className="font-medium">
+                                    {formatCurrency(trip.acmi)}
                                 </span>
                             </div>
                         </div>

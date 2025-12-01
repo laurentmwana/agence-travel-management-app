@@ -16,6 +16,7 @@ const title = 'Gestion des trajets';
 const breadcrumbs: BreadcrumbItem[] = [];
 
 const Page: FC<PageProps> = ({ trips }) => {
+    console.log(trips.data)
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title={title} />

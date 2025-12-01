@@ -1,6 +1,8 @@
 import InputError from '@/components/input-error';
 import { ButtonLoader } from '@/components/ui/button-loader';
+import { DateTimePicker } from '@/components/ui/date-time-picker';
 import { Input } from '@/components/ui/input';
+import { InputJson } from '@/components/ui/input-json';
 import { Label } from '@/components/ui/label';
 import { SelectGenerate } from '@/components/ui/select-generate';
 import { Textarea } from '@/components/ui/textarea';
@@ -31,11 +33,10 @@ export const TripForm: React.FC<Props> = ({ entity }) => {
     } = useForm({
         id: entity?.id ?? '',
         itinerary_id: entity?.itinerary.id ?? '',
-        total_cost: entity?.total_cost ?? 0,
-        other_expenses: entity?.other_expenses ?? 0,
-        fuel_cost: entity?.fuel_cost ?? 0,
+        other_expenses: entity?.other_expenses ?? [],
+        affretements: entity?.affretements ?? [],
         fuel_quantity: entity?.fuel_quantity ?? 0,
-        revenue: entity?.revenue ?? 0,
+        duration_hours: entity?.duration_hours ?? 1,
         observation: entity?.observation ?? '',
         perfomed_at: entity?.perfomed_at ?? '',
     });
@@ -66,7 +67,7 @@ export const TripForm: React.FC<Props> = ({ entity }) => {
         <div className="space-y-4">
             <form onSubmit={onSubmit}>
                 <div className="grid gap-4 py-4">
-                    {/* Départ */}
+                    {/* Itinéraire */}
                     <div className="grid gap-2">
                         <Label>Itinéraire</Label>
                         <SelectGenerate
@@ -99,72 +100,62 @@ export const TripForm: React.FC<Props> = ({ entity }) => {
 
                     <div className="grid gap-2">
                         <Label>Date</Label>
-                        <Input
-                            type="datetime-local"
+                        <DateTimePicker
                             value={data.perfomed_at}
-                            onChange={(e) =>
-                                setData('perfomed_at', e.target.value)
-                            }
+                            onChange={(v) => setData('perfomed_at', v ?? '')}
                         />
                         <InputError message={errors.perfomed_at} />
                     </div>
 
-                      {/* Quantité du carburant */}
+                    {/* Quantité du carburant */}
                     <div className="grid gap-2">
                         <Label>Quantité du carburant</Label>
                         <Input
                             type="number"
                             value={data.fuel_quantity}
                             onChange={(e) =>
-                                setData('fuel_quantity', parseFloat(e.target.value))
+                                setData(
+                                    'fuel_quantity',
+                                    parseFloat(e.target.value),
+                                )
                             }
                         />
                         <InputError message={errors.fuel_quantity} />
                     </div>
 
-                    {/* Coût du carburant */}
+                    {/* Durée en heures */}
                     <div className="grid gap-2">
-                        <Label>Coût du carburant</Label>
+                        <Label>Durée en heures</Label>
                         <Input
                             type="number"
-                            value={data.fuel_cost}
-                            onChange={(e) =>
-                                setData('fuel_cost', parseFloat(e.target.value))
-                            }
-                        />
-                        <InputError message={errors.fuel_cost} />
-                    </div>
-
-                    {/* Frais Divers */}
-                    <div className="grid gap-2">
-                        <Label>Frais Divers</Label>
-                        <Input
-                            type="number"
-                            value={data.other_expenses}
+                            value={data.duration_hours}
                             onChange={(e) =>
                                 setData(
-                                    'other_expenses',
+                                    'duration_hours',
                                     parseFloat(e.target.value),
                                 )
                             }
                         />
-                        <InputError message={errors.other_expenses} />
+                        <InputError message={errors.duration_hours} />
                     </div>
 
-                    {/* Revenue */}
-                    <div className="grid gap-2">
-                        <Label>Revenue</Label>
-                        <Input
-                            type="number"
-                            value={data.revenue}
-                            onChange={(e) =>
-                                setData('revenue', parseFloat(e.target.value))
-                            }
-                        />
-                        <InputError message={errors.revenue} />
-                    </div>
+                    {/* Autres depenses */}
+                    <InputJson
+                        label="Affretement"
+                        error={errors.affretements}
+                        value={data.affretements}
+                        onChange={(v) => setData('affretements', v)}
+                        placeholder="autres depenses"
+                    />
 
-                    {/* Trajet programmé */}
+                    {/* Autres depenses */}
+                    <InputJson
+                        label="Autres depenses"
+                        error={errors.other_expenses}
+                        value={data.other_expenses}
+                        onChange={(v) => setData('other_expenses', v)}
+                        placeholder="autres depenses"
+                    />
 
                     {/* Obervation */}
                     <div className="grid gap-2">
