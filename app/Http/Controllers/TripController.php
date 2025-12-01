@@ -20,9 +20,8 @@ class TripController extends Controller
     private const SORTABLE_FIELD = [
         'perfomed_at',
         'total_cost',
-        'revenue',
         'net_profit',
-        'fuel_cost',
+        'fuel_price',
         'other_expenses',
     ];
 
