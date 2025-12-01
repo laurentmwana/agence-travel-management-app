@@ -17,13 +17,11 @@ class NewTripUseCase
             return Trip::create([
                 'perfomed_at' => $dto->getPerfomedAt(),
                 'observation' => $dto->getObservation(),
-                'total_cost' => $dto->getTotalCcost(),
-                'revenue' => $dto->getRevenue(),
-                'net_profit' => $dto->getNetProfit(),
-                'fuel_cost' => $dto->getFuelCost(),
-                'fuel_quantity' => $dto->getFuelQuantity(),
+                'duration_hours' => $dto->getDurationHours(),
+                'affretements' => $dto->getAffretements(),
                 'other_expenses' => $dto->getOtherExpenses(),
                 'itinerary_id' => $dto->getItineraryId(),
+                'fuel_quantity' => $dto->getFuelQuantity(),
                 ...$calculates
             ]);
         });

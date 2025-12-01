@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Dto\TripDto;
 use App\Helpers\Hydrator;
+use App\Rules\JsonArrayRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TripRequest extends FormRequest
@@ -23,13 +24,18 @@ class TripRequest extends FormRequest
      */
     public function rules(): array
     {
+        $jsonRule = [
+            'name' => 'required|string|min:0',
+            'amount' => 'required|regex:/^\d+(\.\d+)?$/|min:0',
+        ];
+
         return [
             'perfomed_at' => ['required'],
             'observation' => ['nullable', 'between:10,5000'],
-            'revenue' => ['required'],
-            'fuel_cost' => ['required'],
-            'fuel_quantity' => ['required'],
-            'other_expenses' => ['required'],
+            'fuel_quantity' => ['required', 'regex:/^\d+(\.\d+)?$/', 'min:1'],
+            'duration_hours' => ['required', 'regex:/^\d+(\.\d+)?$/', 'min:1'],
+            'other_expenses' => ['required', 'array', new JsonArrayRule($jsonRule)],
+            'affretements' => ['required', 'array', new JsonArrayRule($jsonRule)],
             'itinerary_id' => ['required', 'exists:itineraries,id'],
         ];
     }

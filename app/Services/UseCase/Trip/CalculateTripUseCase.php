@@ -3,14 +3,50 @@
 namespace App\Services\UseCase\Trip;
 
 use App\Dto\TripDto;
+use App\Services\UseCase\Liter\WriteFileLiterUseCase;
+use App\Services\UseCase\Tax\GetTaxUseCase;
 
 class CalculateTripUseCase
 {
+      private const ACMI_PER_HOURS = 2100;
+
+      public function __construct(
+            private WriteFileLiterUseCase $liter,
+            private GetTaxUseCase $tax
+      ) {}
+
       public function handle(TripDto $dto)
       {
-            $totalCost = $dto->getFuelCost() + $dto->getOtherExpenses();
-            $netProfit = $dto->getRevenue() - $totalCost;
+            // calculate acmi
+            $acmi = $dto->getDurationHours() * self::ACMI_PER_HOURS;
+            // calculate other expenses
+            $affretementTotal = $this->calculateSumAmount($dto->getAffretements());
+            $otherExpensesTotal = $this->calculateSumAmount($dto->getOtherExpenses());
+            $fuelPrice = $dto->getFuelQuantity() * $this->liter->get();
+            $totalTax = $this->tax->sumAmount();
 
-            return ['net_profit' => $netProfit, 'total_cost' => $totalCost];
+            $netProfit = $affretementTotal - $acmi - $fuelPrice - $totalTax;
+            $totalCost = $acmi + $fuelPrice + $totalTax + $otherExpensesTotal + $affretementTotal;
+
+            return [
+                  'acmi' => $acmi,
+                  'affretement_total' => $affretementTotal,
+                  'total_expenses' => $otherExpensesTotal,
+                  'fuel_price' => $fuelPrice,
+                  'total_cost' => $totalCost,
+                  'net_profit' => $netProfit,
+                  'net_loss' => $netProfit < 0 ? $netProfit : 0,
+            ];
+      }
+
+
+      private function calculateSumAmount(array $items): float|int
+      {
+            $total = 0;
+
+            foreach ($items as $item) {
+                  $total += $item['amount'];
+            }
+            return $total;
       }
 }

@@ -5,13 +5,14 @@ namespace App\Dto;
 class TripDto
 {
       private string $perfomedAt;
-      private string|null $observation = null;
-      private float $totalCcost = 0;
-      private float $revenue = 0;
+      private string|null $observation;
+      private float $totalCost = 0;
       private float $netProfit = 0;
-      private float $fuelCost = 0;
-      private float $fuelQuantity;
-      private float $otherExpenses = 0;
+      private float $fuelQuantity = 0;
+      private array $otherExpenses  = [];
+      private array $affretements  = [];
+      private float $fuelPrice = 0;
+      private int $durationHours = 0;
       private int $itineraryId;
 
       /**
@@ -61,48 +62,25 @@ class TripDto
       }
 
       /**
-       * Get the value of totalCcost
+       * Get the value of totalCost
        *
        * @return float
        */
-      public function getTotalCcost(): float
+      public function getTotalCost(): float
       {
-            return $this->totalCcost;
+            return $this->totalCost;
       }
 
       /**
-       * Set the value of totalCcost
+       * Set the value of totalCost
        *
-       * @param float $totalCcost
+       * @param float $totalCost
        *
        * @return self
        */
-      public function setTotalCcost(float $totalCcost): self
+      public function setTotalCost(float $totalCost): self
       {
-            $this->totalCcost = $totalCcost;
-            return $this;
-      }
-
-      /**
-       * Get the value of revenue
-       *
-       * @return float
-       */
-      public function getRevenue(): float
-      {
-            return $this->revenue;
-      }
-
-      /**
-       * Set the value of revenue
-       *
-       * @param float $revenue
-       *
-       * @return self
-       */
-      public function setRevenue(float $revenue): self
-      {
-            $this->revenue = $revenue;
+            $this->totalCost = $totalCost;
             return $this;
       }
 
@@ -130,30 +108,6 @@ class TripDto
       }
 
       /**
-       * Get the value of fuelCost
-       *
-       * @return float
-       */
-      public function getFuelCost(): float
-      {
-            return $this->fuelCost;
-      }
-
-      /**
-       * Set the value of fuelCost
-       *
-       * @param float $fuelCost
-       *
-       * @return self
-       */
-      public function setFuelCost(float $fuelCost): self
-      {
-            $this->fuelCost = $fuelCost;
-            return $this;
-      }
-
-
-      /**
        * Get the value of fuelQuantity
        *
        * @return float
@@ -179,9 +133,9 @@ class TripDto
       /**
        * Get the value of otherExpenses
        *
-       * @return float
+       * @return array
        */
-      public function getOtherExpenses(): float
+      public function getOtherExpenses(): array
       {
             return $this->otherExpenses;
       }
@@ -189,13 +143,82 @@ class TripDto
       /**
        * Set the value of otherExpenses
        *
-       * @param float $otherExpenses
+       * @param array $otherExpenses
        *
        * @return self
        */
-      public function setOtherExpenses(float $otherExpenses): self
+      public function setOtherExpenses(array $otherExpenses): self
       {
             $this->otherExpenses = $otherExpenses;
+            return $this;
+      }
+
+      /**
+       * Get the value of affretements
+       *
+       * @return array
+       */
+      public function getAffretements(): array
+      {
+            return $this->affretements;
+      }
+
+      /**
+       * Set the value of affretements
+       *
+       * @param array $affretements
+       *
+       * @return self
+       */
+      public function setAffretements(array $affretements): self
+      {
+            $this->affretements = $affretements;
+            return $this;
+      }
+
+      /**
+       * Get the value of fuelPrice
+       *
+       * @return float
+       */
+      public function getFuelPrice(): float
+      {
+            return $this->fuelPrice;
+      }
+
+      /**
+       * Set the value of fuelPrice
+       *
+       * @param float $fuelPrice
+       *
+       * @return self
+       */
+      public function setFuelPrice(float $fuelPrice): self
+      {
+            $this->fuelPrice = $fuelPrice;
+            return $this;
+      }
+
+      /**
+       * Get the value of durationHours
+       *
+       * @return int
+       */
+      public function getDurationHours(): int
+      {
+            return $this->durationHours;
+      }
+
+      /**
+       * Set the value of durationHours
+       *
+       * @param int $durationHours
+       *
+       * @return self
+       */
+      public function setDurationHours(int $durationHours): self
+      {
+            $this->durationHours = $durationHours;
             return $this;
       }
 

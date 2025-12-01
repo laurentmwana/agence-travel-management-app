@@ -17,14 +17,16 @@ class TripResource extends JsonResource
     {
         return [
             'id' => $this->resource->id,
-            'perfomed_at' => $this->resource->perfomed_at,
+            'perfomed_at' => $this->resource->perfomed_at->format('Y-m-d H:i'),
             'observation' => $this->resource->observation,
             'total_cost' => $this->resource->total_cost,
-            'revenue' => $this->resource->revenue,
+            'duration_hours' => $this->resource->duration_hours,
+            'net_loss' => $this->resource->net_loss,
             'net_profit' => $this->resource->net_profit,
-            'fuel_cost' => $this->resource->fuel_cost,
             'fuel_quantity' => $this->resource->fuel_quantity,
-            'other_expenses' => $this->resource->other_expenses,
+            'total_expenses' => $this->resource->other_expenses,
+            'fuel_price' => $this->resource->fuel_price,
+            'acmi' => $this->resource->acmi,
             'itinerary' => new ItineraryResource($this->resource->itinerary),
             'created_at' => $this->resource->created_at,
         ];

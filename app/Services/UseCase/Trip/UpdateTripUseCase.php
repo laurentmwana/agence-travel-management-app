@@ -18,10 +18,10 @@ class UpdateTripUseCase
             $trip->update([
                 'perfomed_at' => $dto->getPerfomedAt(),
                 'observation' => $dto->getObservation(),
-                'revenue' => $dto->getRevenue(),
-                'fuel_cost' => $dto->getFuelCost(),
-                'fuel_quantity' => $dto->getFuelQuantity(),
+                'duration_hours' => $dto->getDurationHours(),
+                'affretements' => $dto->getAffretements(),
                 'other_expenses' => $dto->getOtherExpenses(),
+                'fuel_quantity' => $dto->getFuelQuantity(),
                 'itinerary_id' => $dto->getItineraryId(),
                 ...$calculates
             ]);

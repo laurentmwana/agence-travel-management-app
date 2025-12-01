@@ -20,6 +20,11 @@ class GetTaxUseCase
         return $destination;
     }
 
+    public function sumAmount()
+    {
+        return $this->repository->sum('amount');
+    }
+
     public function findPaginated(?string $search = null)
     {
         return $this->repository->findPaginated($search);

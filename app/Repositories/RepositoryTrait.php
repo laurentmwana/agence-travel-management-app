@@ -37,4 +37,9 @@ trait RepositoryTrait
 
             return $this->filter->orderFromRequest($builder, $filters, $sortable)->paginate();
       }
+
+      public function sum(string $column)
+      {
+            return $this->model::query()->sum($column);
+      }
 }

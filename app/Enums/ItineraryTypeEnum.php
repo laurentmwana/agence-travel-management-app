@@ -7,8 +7,8 @@ enum ItineraryTypeEnum: string
       use \App\Traits\EnumerateTrait;
 
       case PLANE = 'plane';
-      case BOAT = 'boat';
-      case TRAIN = 'train';
-      case BUS = 'bus';
-      case CAR = 'car';
+      // case BOAT = 'boat';
+      // case TRAIN = 'train';
+      // case BUS = 'bus';
+      // case CAR = 'car';
 }
