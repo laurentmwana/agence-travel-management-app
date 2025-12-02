@@ -12,7 +12,6 @@ class NewItineraryUseCase
     {
         return DB::transaction(function () use ($dto) {
             return Itinerary::create([
-                'note' => $dto->getNote(),
                 'type' => $dto->getType()->value,
                 'is_scheduled' => $dto->getIsScheduled(),
                 'distance_km' => $dto->getDistanceKm(),

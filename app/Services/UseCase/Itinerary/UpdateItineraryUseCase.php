@@ -12,7 +12,6 @@ class UpdateItineraryUseCase
     {
         return DB::transaction(function () use ($dto, $itinerary) {
             $itinerary->update([
-                'note' => $dto->getNote(),
                 'type' => $dto->getType()->value,
                 'is_scheduled' => $dto->getIsScheduled(),
                 'distance_km' => $dto->getDistanceKm(),

@@ -30,7 +30,6 @@ class ItineraryRequest extends FormRequest
         $startDestination = $this->input('start_destination_id');
 
         return [
-            'note' => ['nullable', 'between:10,5000'],
             'type' => ['required', Rule::in(ItineraryTypeEnum::toArray())],
             'is_scheduled' => ['required', 'boolean'],
             'distance_km' => ['required', 'regex:/^\d+(\.\d+)?$/', 'min:1'],

@@ -6,36 +6,11 @@ use App\Enums\ItineraryTypeEnum;
 
 class ItineraryDto
 {
-      private string|null $note;
       private ItineraryTypeEnum $type;
       private bool $isScheduled;
       private string|null $distanceKm;
       private $startDestinationId;
       private $endDestinationId;
-
-
-      /**
-       * Get the value of note
-       *
-       * @return string|null
-       */
-      public function getNote(): string|null
-      {
-            return $this->note;
-      }
-
-      /**
-       * Set the value of note
-       *
-       * @param string|null $note
-       *
-       * @return self
-       */
-      public function setNote(string|null $note): self
-      {
-            $this->note = $note;
-            return $this;
-      }
 
       /**
        * Get the value of type
