@@ -17,8 +17,9 @@ import { Input } from './ui/input';
 
 export const SearchInput: FC = () => {
     const { search } = usePage<QueriesProps>().props.query;
-    const { get, data, processing, setData, reset } =
-        useForm({ search: search });
+    const { get, data, processing, setData, reset } = useForm({
+        search: search,
+    });
 
     const [open, setOpen] = useState(false);
     const [isDisable, setIsDisable] = useState<boolean>(true);
@@ -56,12 +57,11 @@ export const SearchInput: FC = () => {
         <form className="flex items-center gap-1" onSubmit={handleSubmit}>
             <div className="relative flex-1">
                 <Input
-                    placeholder={window.__('search-input.placeholder')}
+                    placeholder="Recherche..."
                     className="h-8 pr-8"
                     id="search"
                     name="search"
                     onChange={(e) => handleInputSearch(e.target.value)}
-                    aria-label={window.__('search-input.label')}
                     disabled={processing}
                     value={data.search}
                 />
@@ -74,7 +74,6 @@ export const SearchInput: FC = () => {
                         variant="outline"
                         className="absolute top-1 right-1 h-6 w-6"
                         onClick={handleClear}
-                        aria-label={window.__('search-input.clear')}
                     >
                         <X size={14} />
                     </Button>
@@ -86,7 +85,6 @@ export const SearchInput: FC = () => {
                 size="sm"
                 variant="outline"
                 className="h-8"
-                aria-label={window.__('search-input.label')}
             >
                 <Search size={14} />
             </Button>
@@ -106,14 +104,16 @@ export const SearchInput: FC = () => {
                     >
                         <Search size={14} />
                         <span className="text-muted-foreground">
-                            {window.__('search-input.placeholder')}
+                            Recherche...
                         </span>
                     </Button>
                 </DialogTrigger>
 
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>{window.__('search-input.title')}</DialogTitle>
+                        <DialogTitle>
+                            Que cherchez-vous ?
+                        </DialogTitle>
                     </DialogHeader>
 
                     {searchForm}

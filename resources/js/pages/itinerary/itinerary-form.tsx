@@ -32,8 +32,8 @@ export const ItineraryForm: React.FC<ItineraryFormProps> = ({ entity }) => {
         resetAndClearErrors,
     } = useForm({
         id: entity?.id ?? '',
-        type: entity?.type ?? '',
-        is_scheduled: entity?.is_scheduled?.toString() ?? '0',
+        type: entity?.type ?? 'plan',
+        is_scheduled: entity?.is_scheduled?.toString() ?? '1',
         distance_km: entity?.distance_km ?? '0',
         start_destination_id: entity?.start?.id.toString() ?? '',
         end_destination_id: entity?.end?.id.toString() ?? '',
