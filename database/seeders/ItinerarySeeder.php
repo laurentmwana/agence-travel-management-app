@@ -14,15 +14,30 @@ class ItinerarySeeder extends Seeder
      */
     public function run(): void
     {
+        $itineraries = [];
+
+
+
         foreach (Destination::all() as $start) {
-            foreach (Destination::query()->where('id', '!=', $start->id)->get() as $end) {
-                if ($start->id !== $end->id) {
+            $ends = $this->getDestinationEnds($start->id);
+            foreach ($ends as $end) {
+                $key = "$start->id-$end->id|$end->id-$start->id";
+                if (!isset($itineraries[$key])) {
                     Itinerary::factory()->create([
                         'start_destination_id' => $start->id,
                         'end_destination_id' => $end->id,
                     ]);
+
+                    $itineraries[$key] = true;
                 }
             }
         }
+    }
+
+    private function getDestinationEnds(string $startId)
+    {
+        return Destination::query()
+            ->where('id', '!=', $startId)
+            ->get();
     }
 }

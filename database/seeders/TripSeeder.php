@@ -16,6 +16,7 @@ class TripSeeder extends Seeder
     {
         foreach (Itinerary::all() as $itinerary) {
             $randomMaxTrip = random_int(2, 3);
+
             Trip::factory($randomMaxTrip)->create([
                 'itinerary_id' => $itinerary->id,
             ]);
