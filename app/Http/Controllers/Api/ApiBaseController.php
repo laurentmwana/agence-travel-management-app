@@ -8,6 +8,7 @@ use App\Http\Resources\Destination\DestinationFetchResource;
 use App\Http\Resources\Itinerary\ItineraryFetchResource;
 use App\Services\UseCase\Destination\GetDestinationUseCase;
 use App\Services\UseCase\Itinerary\GetItineraryUseCase;
+use Illuminate\Http\Request;
 
 class ApiBaseController extends Controller
 {
@@ -32,10 +33,14 @@ class ApiBaseController extends Controller
             ]);
       }
 
-      public function itineraries()
+      public function itineraries(Request $request)
       {
+            $isScheduled = $request->query->getBoolean('is_scheduled', true);
+
             return response()->json([
-                  'data' => ItineraryFetchResource::collection($this->getItinerary->findAll())
+                  'data' => ItineraryFetchResource::collection(
+                        $this->getItinerary->findBy(['is_scheduled' => $isScheduled])
+                  )
             ]);
       }
 }

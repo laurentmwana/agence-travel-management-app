@@ -25,6 +25,7 @@ class GetDestinationUseCase
         return $this->repository->findAll($columns);
     }
 
+
     public function filters(array $filters, ?string $search = null)
     {
         return $this->repository->findPaginated($filters, $search);

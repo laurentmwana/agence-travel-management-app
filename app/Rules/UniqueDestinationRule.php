@@ -29,15 +29,18 @@ class UniqueDestinationRule implements ValidationRule
         }
 
         if ($this->startDestinationId === $value) {
-            $fail("cette itinéraire n'est pas valide", null);
+            $fail("cet itinéraire n'est pas valide", null);
         }
 
         $builder = Itinerary::query()
-            ->where('start_destination_id', $this->startDestinationId)
-            ->where('end_destination_id', $value);
+            ->where(function ($query) use ($value) {
+                $query->where('start_destination_id', $this->startDestinationId);
+                $query->where('end_destination_id', $value);
+            });
+
 
         $itinerary = $this->itineraryId !== null
-            ? $builder->where('id', $this->itineraryId)->first()
+            ? $builder->where('id', '!=', $this->itineraryId)->first()
             : $builder->first();
 
         if ($itinerary instanceof Itinerary) {

@@ -32,7 +32,7 @@ class ItineraryRequest extends FormRequest
         return [
             'type' => ['required', Rule::in(ItineraryTypeEnum::toArray())],
             'is_scheduled' => ['required', 'boolean'],
-            'distance_km' => ['required', 'regex:/^\d+(\.\d+)?$/', 'min:1'],
+            'distance_km' => ['required', 'numeric', 'regex:/^\d+(\.\d+)?$/', 'min:1'],
             'start_destination_id' => ['required', 'exists:destinations,id'],
             'end_destination_id' =>  ['required', 'exists:destinations,id', new UniqueDestinationRule($id, $startDestination)],
         ];

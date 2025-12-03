@@ -9,6 +9,11 @@ trait RepositoryTrait
             return $this->model::all($columns);
       }
 
+      public function findBy(array $criteria = [], array $columns = ["*"])
+      {
+            return $this->model::where($criteria)->get($columns);
+      }
+
       public function findById(string $id)
       {
             return $this->model::query()->find($id);

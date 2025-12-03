@@ -3,7 +3,6 @@
 namespace App\Services\UseCase\Itinerary;
 
 use App\Repositories\ItineraryRepository;
-use Illuminate\Support\Facades\DB;
 
 class GetItineraryUseCase
 {
@@ -12,6 +11,11 @@ class GetItineraryUseCase
     public function findAll(array $columns = ['*'])
     {
         return $this->repository->findAll($columns);
+    }
+
+    public function findBy(array $criteria)
+    {
+        return $this->repository->findBy($criteria);
     }
 
     public function findOrFail(string $id)

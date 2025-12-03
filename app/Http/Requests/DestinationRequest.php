@@ -28,7 +28,7 @@ class DestinationRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'between:2,255',
+                'between:2,20',
                 (new Unique(Destination::class))->ignore($id)
             ]
         ];
