@@ -142,7 +142,7 @@
     }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1400px) {
     .table-responsive,
     .table-responsive tbody,
     .table-responsive tfoot,
@@ -153,7 +153,7 @@
     }
 
     .table-responsive tr {
-        @apply mb-[30px] border-b-0 bg-background;
+        @apply bg-background mb-[30px] border-b-0;
     }
 
     .table-responsive tr:hover {
@@ -165,10 +165,10 @@
     }
 
     .table-responsive td {
-        @apply relative -mt-[1px] border-b border-muted-foreground/20 ps-[170px];
+        @apply border-muted-foreground/20 relative -mt-[1px] border-b ps-[180px];
     }
 
     .table-responsive td::before {
-        @apply absolute top-0 bottom-0 left-0 flex w-[145px] items-center justify-center border-e border-muted-foreground/20 p-3 text-center content-[attr(data-label)];
+        @apply border-muted-foreground/20 absolute bottom-0 left-0 top-0 flex w-[145px] items-center justify-center overflow-hidden border-e p-3 text-center content-[attr(data-label)];
     }
 }

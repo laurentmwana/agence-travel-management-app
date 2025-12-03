@@ -34,7 +34,7 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                         </div>
                         <div>
                             <h1 className="text-base font-bold">
-                                {trip.itinerary.start.name} →
+                                {trip.itinerary.start.name} →{' '}
                                 {trip.itinerary.end.name}
                             </h1>
 

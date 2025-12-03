@@ -30,7 +30,7 @@ const Page: FC<Props> = ({ counters, stats, defaultYear, years }) => {
             <Head title={title} />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 <HeadingSmall title={title} />
-                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+                <div className="grid auto-rows-min gap-4 lg:grid-cols-3">
                     <DashboardCounterCard
                         title="Destination"
                         moreRoute={dashboard.destination().url}
