@@ -11,15 +11,15 @@ class TaxSeeder extends Seeder
     private const TAXES = [
         [
             'name' => 'route',
-            'amount' => 38.40,
+            'amount' => 38.24,
         ],
         [
             'name' => 'stationnement',
-            'amount' => 20.12,
+            'amount' => 124,
         ],
         [
             'name' => 'attérrisage',
-            'amount' => 40,
+            'amount' => 20.48
         ],
         [
             'name' => 'formulaire',

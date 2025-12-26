@@ -10,9 +10,32 @@ class DestinationSeeder extends Seeder
 {
     private const DESTINATIONS = [
         'KINSHASA',
+        'BAS-UELE',
+        'EQUATEUR',
+        'HAUT-KATANGA',
+        'HAUT-LOMAMI',
+        'HAUT-UELE',
+        'ITURI',
+        'KASAI',
+        'KASAI-CENTRAL',
+        'KASAI-ORIENTAL',
+        'KWANGO',
         'KWILU',
-        'MATADI'
+        'LOMAMI',
+        'LUALABA',
+        'MAI-NDOMBE',
+        'MANIEMA',
+        'MONGALA',
+        'NORD-KIVU',
+        'NORD-UBANGI',
+        'SANKURU',
+        'SUD-KIVU',
+        'SUD-UBANGI',
+        'TANGANYIKA',
+        'TSHOPO',
+        'TSHUAPA'
     ];
+
 
     /**
      * Run the database seeds.
