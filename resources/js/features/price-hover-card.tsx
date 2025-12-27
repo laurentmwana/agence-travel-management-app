@@ -4,34 +4,26 @@ import {
     HoverCardContent,
     HoverCardTrigger,
 } from '@/components/ui/hover-card';
-import { ago } from '@/lib/date';
 import { formatLargeNumber } from '@/lib/number';
-import { excerpt } from '@/lib/string';
-import { Tax } from '@/types/model';
 import React from 'react';
-import { PriceHoverCard } from '../price-hover-card';
 
 interface Props {
-    tax: Tax;
+    price: number;
+    suffix?: string;
 }
 
-export const TaxHoverCard: React.FC<Props> = ({ tax }) => {
+export const PriceHoverCard: React.FC<Props> = ({ price, suffix = '$' }) => {
     return (
         <div>
             <HoverCard>
                 <HoverCardTrigger asChild>
                     <Button className="ps-0" variant="link">
-                        {excerpt(tax.name, 50)}
+                        {formatLargeNumber(price)} {suffix}
                     </Button>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-80">
-                    <h2 className="mb-2 text-base font-semibold">{tax.name}</h2>
                     <p className="mb-2 text-sm font-semibold">
-                        <PriceHoverCard price={tax.amount} />
-                    </p>
-                    <p className="mb-2 text-sm">{tax.description}</p>
-                    <p className="mb-2 text-xs">
-                        Créée il y a {ago(tax.created_at)}
+                        {price} {suffix}
                     </p>
                 </HoverCardContent>
             </HoverCard>

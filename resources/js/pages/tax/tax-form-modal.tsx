@@ -7,6 +7,7 @@ import {
     DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
+import { InputDecimal } from '@/components/ui/input-decimal';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import tax from '@/routes/tax';
@@ -67,6 +68,10 @@ export const TaxFormModal: React.FC<TaxFormModalProps> = ({
               });
     };
 
+    const onAmountChange = (value: number) => {
+        setData('amount', value);
+    };
+
     return (
         <div>
             <div>
@@ -94,14 +99,9 @@ export const TaxFormModal: React.FC<TaxFormModalProps> = ({
 
                                 <div className="grid gap-2">
                                     <Label htmlFor="amount">Montant</Label>
-                                    <Input
+                                    <InputDecimal
                                         id="amount"
-                                        onChange={(e) =>
-                                            setData(
-                                                'amount',
-                                                parseFloat(e.target.value),
-                                            )
-                                        }
+                                        onChange={onAmountChange}
                                         value={data.amount}
                                     />
                                     <InputError message={errors.amount} />

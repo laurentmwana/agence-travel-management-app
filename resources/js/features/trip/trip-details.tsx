@@ -1,6 +1,5 @@
 import { Separator } from '@/components/ui/separator';
 import { formatDate } from '@/lib/date';
-import { formatCurrency } from '@/lib/number';
 import type { Trip } from '@/types/model';
 import {
     Calendar,
@@ -15,6 +14,7 @@ import {
 } from 'lucide-react';
 import type React from 'react';
 import { getItineraryTypeIcon } from '../itinerary';
+import { PriceHoverCard } from '../price-hover-card';
 
 interface TripDetailsProps {
     trip: Trip;
@@ -50,7 +50,10 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                             Distance
                         </div>
                         <div className="text-sm font-bold">
-                            {trip.itinerary.distance_km} km
+                            <PriceHoverCard
+                                price={trip.itinerary.distance_km}
+                                suffix="km"
+                            />
                         </div>
 
                         <div className="mt-2 flex items-center justify-end space-x-2 text-sm">
@@ -80,7 +83,7 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     Coût total
                                 </div>
                                 <div className="font-bold">
-                                    {formatCurrency(trip.total_cost)}
+                                    <PriceHoverCard price={trip.total_cost} />
                                 </div>
                             </div>
 
@@ -89,7 +92,7 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     Profit net
                                 </div>
                                 <div className="font-bold">
-                                    {formatCurrency(trip.net_profit)}
+                                    <PriceHoverCard price={trip.net_profit} />
                                 </div>
                             </div>
 
@@ -98,7 +101,7 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     Perte nette
                                 </div>
                                 <div className="font-bold">
-                                    {formatCurrency(trip.net_loss)}
+                                    <PriceHoverCard price={trip.net_loss} />
                                 </div>
                             </div>
                         </div>
@@ -121,7 +124,7 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     </span>
                                 </div>
                                 <span className="font-bold">
-                                    {formatCurrency(trip.fuel_price)}
+                                    <PriceHoverCard price={trip.fuel_price} />
                                 </span>
                             </div>
 
@@ -132,7 +135,7 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     <span className="font-medium">Taxes</span>
                                 </div>
                                 <span className="font-bold">
-                                    {formatCurrency(trip.total_tax)}
+                                    <PriceHoverCard price={trip.total_tax} />
                                 </span>
                             </div>
 
@@ -145,7 +148,9 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     </span>
                                 </div>
                                 <span className="font-bold">
-                                    {formatCurrency(trip.total_expenses)}
+                                    <PriceHoverCard
+                                        price={trip.total_expenses}
+                                    />
                                 </span>
                             </div>
 
@@ -158,7 +163,9 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                         </span>
                                     </div>
                                     <span className="font-bold">
-                                        {formatCurrency(trip.total_expenses)}
+                                        <PriceHoverCard
+                                            price={trip.total_expenses}
+                                        />
                                     </span>
                                 </div>
                                 <Separator className="my-4" />
@@ -170,7 +177,9 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     >
                                         <span>{expense.name}</span>
                                         <span>
-                                            {formatCurrency(expense.amount)}
+                                            <PriceHoverCard
+                                                price={expense.amount}
+                                            />
                                         </span>
                                     </div>
                                 ))}
@@ -186,7 +195,9 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                         </span>
                                     </div>
                                     <span className="font-bold">
-                                        {formatCurrency(trip.affretement_total)}
+                                        <PriceHoverCard
+                                            price={trip.affretement_total}
+                                        />
                                     </span>
                                 </div>
                                 <Separator className="my-4" />
@@ -198,7 +209,9 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     >
                                         <span>{affretement.name}</span>
                                         <span>
-                                            {formatCurrency(affretement.amount)}
+                                            <PriceHoverCard
+                                                price={affretement.amount}
+                                            />
                                         </span>
                                     </div>
                                 ))}
@@ -248,7 +261,7 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
                                     ACMI
                                 </span>
                                 <span className="font-medium">
-                                    {formatCurrency(trip.acmi)}
+                                    <PriceHoverCard price={trip.acmi} />
                                 </span>
                             </div>
                         </div>

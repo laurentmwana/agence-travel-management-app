@@ -6,7 +6,8 @@ import { Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group"
 
-interface InputDecimalProps {
+type InputDecimalProps  ={
+  id?: string,
   value: number
   onChange: (value: number) => void
   min?: number
@@ -21,6 +22,7 @@ interface InputDecimalProps {
 }
 
 export const InputDecimal: React.FC<InputDecimalProps> = ({
+  id,
   value,
   onChange,
   min,

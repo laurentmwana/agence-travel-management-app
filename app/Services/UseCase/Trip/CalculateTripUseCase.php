@@ -38,6 +38,7 @@ class CalculateTripUseCase
                   'total_cost' => $totalCost,
                   'net_profit' => $netProfit,
                   'net_loss' => $netProfit < 0 ? $netProfit : 0,
+                  'total_tax' => $totalTax,
             ];
       }
 

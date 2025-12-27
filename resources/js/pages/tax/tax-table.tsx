@@ -19,6 +19,7 @@ import { TaxHoverCard } from '@/features/tax/tax-hover-card';
 import { formatLargeNumber } from '@/lib/number';
 import React from 'react';
 import { TaxFormModal } from './tax-form-modal';
+import { PriceHoverCard } from '@/features/price-hover-card';
 
 interface TaxTableProps {
     taxes: Tax[];
@@ -73,7 +74,7 @@ export const TaxTable: React.FC<TaxTableProps> = ({ taxes }) => {
                                         <TaxHoverCard tax={item} />
                                     </TableCell>
                                     <TableCell>
-                                        {formatLargeNumber(item.amount)}$
+                                        <PriceHoverCard price={item.amount} />
                                     </TableCell>
                                     <TableCell>
                                         {ago(item.created_at)}
