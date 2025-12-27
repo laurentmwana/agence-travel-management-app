@@ -15,7 +15,7 @@ interface ErrorPageProps {
     details?: string;
 }
 
-export function ErrorPage({ status, details }: ErrorPageProps) {
+export default function ErrorPage({ status, details }: ErrorPageProps) {
     const errorConfig = {
         503: {
             title: 'Service Indisponible',

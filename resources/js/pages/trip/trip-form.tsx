@@ -86,7 +86,8 @@ export const TripForm: React.FC<Props> = ({ entity }) => {
                                             <div className="flex items-center gap-1">
                                                 <Icontype size={13} />
                                                 <span>
-                                                    {d.start.name} -{d.end.name}
+                                                    {d.start.name} →{' '}
+                                                    {d.end.name}
                                                 </span>
                                             </div>
                                         ),
