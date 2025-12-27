@@ -6,8 +6,8 @@ import { Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group"
 
-type InputDecimalProps  ={
-  id?: string,
+type InputDecimalProps = {
+  id?: string
   value: number
   onChange: (value: number) => void
   min?: number
@@ -61,7 +61,7 @@ export const InputDecimal: React.FC<InputDecimalProps> = ({
   const isIncrementDisabled = disabled || (max !== undefined && value >= max)
 
   return (
-    <InputGroup className={cn("w-full max-w-xs", className)}>
+    <InputGroup className={cn("w-full", className)}>
       <InputGroupAddon align="inline-start">
         <InputGroupButton
           size="icon-xs"

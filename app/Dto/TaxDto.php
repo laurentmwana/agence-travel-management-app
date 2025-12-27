@@ -6,7 +6,7 @@ class TaxDto
 {
       private string $name;
       private float $amount = 0;
-      private string $description;
+      private ?string $description = null;
 
       /**
        * Get the value of name
@@ -57,9 +57,9 @@ class TaxDto
       /**
        * Get the value of description
        *
-       * @return string
+       * @return string|null
        */
-      public function getDescription(): string
+      public function getDescription(): string|null
       {
             return $this->description;
       }
@@ -67,11 +67,11 @@ class TaxDto
       /**
        * Set the value of description
        *
-       * @param string $description
+       * @param string|null $description
        *
        * @return self
        */
-      public function setDescription(string $description): self
+      public function setDescription(?string $description): self
       {
             $this->description = $description;
             return $this;

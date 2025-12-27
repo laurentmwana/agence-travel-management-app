@@ -18,6 +18,7 @@ import { ItineraryHoverCard } from '@/features/itinerary/itinerary-hover-card';
 import { formatLargeNumber } from '@/lib/number';
 import trip from '@/routes/trip';
 import React from 'react';
+import { PriceHoverCard } from '@/features/price-hover-card';
 
 interface TripTableProps {
     trips: Trip[];
@@ -67,15 +68,16 @@ export const TripTable: React.FC<TripTableProps> = ({ trips }) => {
                                     />
                                 </TableCell>
                                 <TableCell>
-                                    {formatLargeNumber(item.fuel_price)}$
+                                    <PriceHoverCard price={item.fuel_price} />
+
                                 </TableCell>
                                 <TableCell>
-                                    {formatLargeNumber(item.acmi)}$
+                                    <PriceHoverCard price={item.acmi} />
                                 </TableCell>
                                 <TableCell
                                     className={`${item.net_profit < 0 ? 'text-destructive' : 'text-green-500'}`}
                                 >
-                                    {formatLargeNumber(item.net_profit)}$
+                                    <PriceHoverCard price={item.net_profit} />
                                 </TableCell>
                                 <TableCell>{item.duration_hours}</TableCell>
                                 <TableCell>{ago(item.created_at)}</TableCell>

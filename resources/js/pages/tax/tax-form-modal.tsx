@@ -68,8 +68,9 @@ export const TaxFormModal: React.FC<TaxFormModalProps> = ({
               });
     };
 
-    const onAmountChange = (value: number) => {
-        setData('amount', value);
+    const onAmountChange = (value: string | number) => {
+        const parseData = parseFloat(value.toString());
+        setData('amount', isNaN(parseData) ? 0 : parseData);
     };
 
     return (

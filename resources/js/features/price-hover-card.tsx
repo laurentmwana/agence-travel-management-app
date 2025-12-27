@@ -22,7 +22,7 @@ export const PriceHoverCard: React.FC<Props> = ({ price, suffix = '$' }) => {
                     </Button>
                 </HoverCardTrigger>
                 <HoverCardContent className="w-80">
-                    <p className="mb-2 text-sm font-semibold">
+                    <p className="mb-2 text-center text-sm font-semibold">
                         {price} {suffix}
                     </p>
                 </HoverCardContent>
