@@ -15,10 +15,10 @@ import { SearchInput } from '@/components/search-input';
 import { ButtonLink } from '@/components/ui/button-link';
 import { TableHeadSortable } from '@/components/ui/sortable-head';
 import { ItineraryHoverCard } from '@/features/itinerary/itinerary-hover-card';
-import { formatLargeNumber } from '@/lib/number';
+import { PriceHoverCard } from '@/features/price-hover-card';
+import { TripReportPdf } from '@/features/trip/trip-report-pdf';
 import trip from '@/routes/trip';
 import React from 'react';
-import { PriceHoverCard } from '@/features/price-hover-card';
 
 interface TripTableProps {
     trips: Trip[];
@@ -69,7 +69,6 @@ export const TripTable: React.FC<TripTableProps> = ({ trips }) => {
                                 </TableCell>
                                 <TableCell>
                                     <PriceHoverCard price={item.fuel_price} />
-
                                 </TableCell>
                                 <TableCell>
                                     <PriceHoverCard price={item.acmi} />
@@ -82,23 +81,26 @@ export const TripTable: React.FC<TripTableProps> = ({ trips }) => {
                                 <TableCell>{item.duration_hours}</TableCell>
                                 <TableCell>{ago(item.created_at)}</TableCell>
                                 <TableCell>
-                                    <CollectionActionUrl
-                                        routeDelete={
-                                            trip.destroy({
-                                                id: item.id,
-                                            }).url
-                                        }
-                                        routeEdit={
-                                            trip.edit({
-                                                id: item.id,
-                                            }).url
-                                        }
-                                        routeShow={
-                                            trip.show({
-                                                id: item.id,
-                                            }).url
-                                        }
-                                    />
+                                    <div className="flex items-center gap-2">
+                                        <CollectionActionUrl
+                                            routeDelete={
+                                                trip.destroy({
+                                                    id: item.id,
+                                                }).url
+                                            }
+                                            routeEdit={
+                                                trip.edit({
+                                                    id: item.id,
+                                                }).url
+                                            }
+                                            routeShow={
+                                                trip.show({
+                                                    id: item.id,
+                                                }).url
+                                            }
+                                        />
+                                        <TripReportPdf item={item} />
+                                    </div>
                                 </TableCell>
                             </TableRow>
                         );

@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\AcmiController;
-use App\Http\Controllers\Api\ApiBaseController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DestinationController;
-use App\Http\Controllers\ItineraryController;
-use App\Http\Controllers\LiterController;
-use App\Http\Controllers\TaxController;
-use App\Http\Controllers\TripController;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaxController;
+use App\Http\Controllers\AcmiController;
+use App\Http\Controllers\TripController;
+use App\Http\Controllers\LiterController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItineraryController;
+use App\Http\Controllers\Api\ApiBaseController;
+use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\TripReportPdfController;
 
 Route::get('/', function () {
     return Inertia::render('welcome', [
@@ -48,7 +49,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // TRIP ROUTE
     Route::resource('trip', TripController::class)
         ->parameter('trip', 'id');
+
     // END TRIP ROUTE
+
+    // TRIP REPORT PDF ROUTE
+    Route::get('trip/{tripId}/report/pdf', [TripReportPdfController::class, 'item'])
+        ->name('trip.report-pdf.item');
+    // END TRIP REPORT PDF ROUT
 
     // TAX ROUTE
     Route::get('tax', [TaxController::class, 'index'])->name('tax.index');
