@@ -9,6 +9,7 @@ use App\Http\Controllers\TripController;
 use App\Http\Controllers\LiterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItineraryController;
+use App\Http\Controllers\PassengerController;
 use App\Http\Controllers\Api\ApiBaseController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\TripReportPdfController;
@@ -68,6 +69,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // LITER ROUTE
     Route::get('price-unit-liter', [LiterController::class, 'index'])->name('liter.index');
     Route::post('price-unit-liter/store', [LiterController::class, 'store'])->name('liter.store');
+    // END LITER ROUTE 
+
+    // LITER ROUTE
+    Route::get('price-unit-passenger', [PassengerController::class, 'index'])->name('passenger.index');
+    Route::post('price-unit-passenger/store', [PassengerController::class, 'store'])->name('passenger.store');
     // END LITER ROUTE 
 
     // ACMI ROUTE

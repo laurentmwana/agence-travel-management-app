@@ -13,6 +13,7 @@ class TripDto
       private array $affretements  = [];
       private float $fuelPrice = 0;
       private int $durationHours = 0;
+      private int $numberOfPassenger = 0;
       private int $itineraryId;
 
       /**
@@ -242,6 +243,29 @@ class TripDto
       public function setItineraryId(int $itineraryId): self
       {
             $this->itineraryId = $itineraryId;
+            return $this;
+      }
+
+      /**
+       * Get the value of numberOfPassenger
+       *
+       * @return int
+       */
+      public function getNumberOfPassenger(): int
+      {
+            return $this->numberOfPassenger;
+      }
+
+      /**
+       * Set the value of numberOfPassenger
+       *
+       * @param int $numberOfPassenger
+       *
+       * @return self
+       */
+      public function setNumberOfPassenger(int $numberOfPassenger): self
+      {
+            $this->numberOfPassenger = $numberOfPassenger;
             return $this;
       }
 }

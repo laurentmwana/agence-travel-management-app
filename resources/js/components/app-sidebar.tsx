@@ -10,9 +10,11 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
+import acmi from '@/routes/acmi';
 import destination from '@/routes/destination';
 import itinerary from '@/routes/itinerary';
 import liter from '@/routes/liter';
+import passenger from '@/routes/passenger';
 import tax from '@/routes/tax';
 import trip from '@/routes/trip';
 import { type NavItem } from '@/types';
@@ -22,12 +24,12 @@ import {
     Fuel,
     LayoutGrid,
     Map,
+    PersonStanding,
     PlaneLanding,
     PlaneTakeoff,
     Share,
 } from 'lucide-react';
 import AppLogo from './app-logo';
-import acmi from '@/routes/acmi';
 
 const mainNavItems: NavItem[] = [
     {
@@ -62,6 +64,12 @@ const mainNavItems: NavItem[] = [
         title: '1 Litre',
         href: liter.index(),
         icon: Fuel,
+    },
+
+    {
+        title: 'Par passanger',
+        href: passenger.index(),
+        icon: PersonStanding,
     },
 
     {

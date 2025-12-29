@@ -37,6 +37,8 @@ export interface Trip extends Timestemp {
     other_expenses: JsonModel[];
     affretements: JsonModel[];
     duration_hours: number;
+    number_of_passenger: number;
+    total_price_passenger: number;
     total_tax: number;
     total_expenses: number;
     affretement_total: number;

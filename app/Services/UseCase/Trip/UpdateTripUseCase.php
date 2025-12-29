@@ -23,6 +23,7 @@ class UpdateTripUseCase
                 'other_expenses' => $dto->getOtherExpenses(),
                 'fuel_quantity' => $dto->getFuelQuantity(),
                 'itinerary_id' => $dto->getItineraryId(),
+                'total_price_passenger' => $dto->getNumberOfPassenger(),
                 ...$calculates
             ]);
 

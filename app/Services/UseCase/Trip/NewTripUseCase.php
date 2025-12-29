@@ -22,6 +22,7 @@ class NewTripUseCase
                 'other_expenses' => $dto->getOtherExpenses(),
                 'itinerary_id' => $dto->getItineraryId(),
                 'fuel_quantity' => $dto->getFuelQuantity(),
+                'total_price_passenger' => $dto->getNumberOfPassenger(),
                 ...$calculates
             ]);
         });

@@ -5,6 +5,7 @@ namespace App\Services\UseCase\Trip;
 use App\Dto\TripDto;
 use App\Services\UseCase\Other\AcmiUseCase;
 use App\Services\UseCase\Other\LiterUseCase;
+use App\Services\UseCase\Other\PassengerUseCase;
 use App\Services\UseCase\Tax\GetTaxUseCase;
 
 class CalculateTripUseCase
@@ -14,6 +15,7 @@ class CalculateTripUseCase
       public function __construct(
             private LiterUseCase $liter,
             private AcmiUseCase $acmi,
+            private PassengerUseCase $passenger,
             private GetTaxUseCase $tax
       ) {}
 
@@ -30,6 +32,8 @@ class CalculateTripUseCase
             $netProfit = $affretementTotal - $acmi - $fuelPrice - $totalTax;
             $totalCost = $acmi + $fuelPrice + $totalTax + $otherExpensesTotal + $affretementTotal;
 
+            $totalPricePassenger = $this->passenger->get() * $dto->getNumberOfPassenger();
+
             return [
                   'acmi' => $acmi,
                   'affretement_total' => $affretementTotal,
@@ -39,6 +43,7 @@ class CalculateTripUseCase
                   'net_profit' => $netProfit,
                   'net_loss' => $netProfit < 0 ? $netProfit : 0,
                   'total_tax' => $totalTax,
+                  'total_price_passenger' => $totalPricePassenger
             ];
       }
 

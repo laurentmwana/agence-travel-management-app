@@ -33,6 +33,8 @@ class TripItemResource extends JsonResource
             'net_loss' => $this->resource->net_loss,
             'total_tax' => $this->resource->total_tax,
             'itinerary' => new ItineraryResource($this->resource->itinerary),
+            'number_of_passenger' => $this->resource->number_of_passenger,
+            'total_price_passenger' => $this->resource->total_price_passenger,
             'created_at' => $this->resource->created_at,
             'updated_at' => $this->resource->updated_at,
         ];

@@ -32,6 +32,7 @@ class TripRequest extends FormRequest
         return [
             'perfomed_at' => ['required',],
             'observation' => ['nullable', 'between:10,5000'],
+            'number_of_passenger' => ['required', 'numeric', 'min:1', 'max:1000'],
             'fuel_quantity' => ['required', 'numeric', 'regex:/^\d+(\.\d+)?$/', 'min:1'],
             'duration_hours' => ['required', 'numeric', 'regex:/^\d+(\.\d+)?$/', 'min:1'],
             'other_expenses' => ['required', 'array', new JsonArrayRule($jsonRule)],

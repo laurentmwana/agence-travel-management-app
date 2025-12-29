@@ -37,6 +37,7 @@ export const TripForm: React.FC<Props> = ({ entity }) => {
         affretements: entity?.affretements ?? [],
         fuel_quantity: entity?.fuel_quantity ?? 0,
         duration_hours: entity?.duration_hours ?? 1,
+        number_of_passenger: entity?.number_of_passenger ?? 1,
         observation: entity?.observation ?? '',
         perfomed_at: entity?.perfomed_at ?? '',
     });
@@ -138,6 +139,22 @@ export const TripForm: React.FC<Props> = ({ entity }) => {
                             }
                         />
                         <InputError message={errors.duration_hours} />
+                    </div>
+
+                    {/* Durée en heures */}
+                    <div className="grid gap-2">
+                        <Label>Nombre de passanger</Label>
+                        <Input
+                            type="number"
+                            value={data.number_of_passenger}
+                            onChange={(e) =>
+                                setData(
+                                    'number_of_passenger',
+                                    parseFloat(e.target.value),
+                                )
+                            }
+                        />
+                        <InputError message={errors.number_of_passenger} />
                     </div>
 
                     {/* Autres depenses */}

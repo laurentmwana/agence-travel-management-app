@@ -13,11 +13,19 @@ import { Label } from '@/components/ui/label';
 import { useForm } from '@inertiajs/react';
 import React, { FormEvent } from 'react';
 
+type KeyType = 'price_unit_liter' | 'price_acmi' | 'price_unit_passenger';
+
+const keys: KeyType[] = [
+    'price_acmi',
+    'price_unit_liter',
+    'price_unit_passenger',
+];
+
 interface DefaultValueFormProps {
     amount: number;
     open: boolean;
     setOpen: (v: boolean) => void;
-    key: 'price_unit_liter' | 'price_acmi';
+    key: 'price_unit_liter' | 'price_acmi' | 'price_unit_passenger';
     url: string;
     title: string;
 }
@@ -31,18 +39,43 @@ export const DefaultValueForm: React.FC<DefaultValueFormProps> = ({
     title,
 }) => {
     const { processing, data, setData, errors, post, resetAndClearErrors } =
-        useForm<Record<string, number>>({
+        useForm<Record<KeyType, number>>({
             price_unit_liter: amount,
             price_acmi: amount,
+            price_unit_passenger: amount,
         });
+
+    const formObject = {
+        price_unit_liter: {
+            defaultValue: amount,
+            data: data.price_unit_liter ?? 0,
+            error: errors.price_unit_liter,
+            onchange: (v: number) => setData('price_unit_liter', v),
+        },
+
+        price_acmi: {
+            defaultValue: amount,
+            data: data.price_acmi ?? 0,
+            error: errors.price_acmi,
+            onchange: (v: number) => setData('price_acmi', v),
+        },
+        price_unit_passenger: {
+            defaultValue: amount,
+            data: data.price_unit_passenger ?? 0,
+            error: errors.price_unit_passenger,
+            onchange: (v: number) => setData('price_unit_passenger', v),
+        },
+    };
+
+    const form = formObject[key];
 
     const onCloseModal = () => {
         setOpen(false);
         resetAndClearErrors();
-        setData(
-            key === 'price_acmi' ? 'price_acmi' : 'price_unit_liter',
-            amount,
-        );
+
+        setData('price_acmi', 0);
+        setData('price_unit_liter', 0);
+        setData('price_unit_passenger', 0);
     };
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -69,27 +102,10 @@ export const DefaultValueForm: React.FC<DefaultValueFormProps> = ({
                             <Label htmlFor={key}>Montant (en $) :</Label>
                             <InputDecimal
                                 className="w-full"
-                                value={
-                                    key === 'price_acmi'
-                                        ? (data.price_acmi ?? 0)
-                                        : (data.price_unit_liter ?? 0)
-                                }
-                                onChange={(v) =>
-                                    setData(
-                                        key === 'price_acmi'
-                                            ? 'price_acmi'
-                                            : 'price_unit_liter',
-                                        v ?? 0,
-                                    )
-                                }
+                                value={form.data}
+                                onChange={form.onchange}
                             />
-                            <InputError
-                                message={
-                                    key === 'price_acmi'
-                                        ? (errors.price_acmi as string)
-                                        : (errors.price_unit_liter as string)
-                                }
-                            />
+                            <InputError message={form.error} />
                         </div>
 
                         <ButtonLoader loader={processing}>

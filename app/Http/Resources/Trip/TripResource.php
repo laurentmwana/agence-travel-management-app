@@ -26,6 +26,8 @@ class TripResource extends JsonResource
             'fuel_quantity' => $this->resource->fuel_quantity,
             'total_expenses' => $this->resource->other_expenses,
             'fuel_price' => $this->resource->fuel_price,
+            'number_of_passenger' => $this->resource->number_of_passenger,
+            'total_price_passenger' => $this->resource->total_price_passenger,
             'total_tax' => $this->resource->total_tax,
             'acmi' => $this->resource->acmi,
             'itinerary' => new ItineraryResource($this->resource->itinerary),

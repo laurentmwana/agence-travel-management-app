@@ -25,6 +25,7 @@ class TripFormResource extends JsonResource
             'other_expenses' => $this->resource->other_expenses,
             'affretements' => $this->resource->affretements,
             'itinerary' => new ItineraryResource($this->resource->itinerary),
+            'number_of_passenger' => $this->resource->number_of_passenger,
         ];
     }
 }
