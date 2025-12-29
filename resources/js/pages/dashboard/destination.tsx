@@ -6,11 +6,7 @@ import { DestinationStatTable } from '@/features/destination/destination-stat-ta
 import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
-import {
-    DashboardMonth,
-    Destination,
-    PaginationCollection,
-} from '@/types/model';
+import { Destination, MonthItem, PaginationCollection } from '@/types/model';
 import { Head } from '@inertiajs/react';
 import { FC } from 'react';
 
@@ -28,7 +24,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 const title = 'Destinations';
 
 type Props = {
-    months: DashboardMonth[];
+    months: MonthItem[];
     years: Array<string>;
     defaultYear: string;
     defaultMonth: string;

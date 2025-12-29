@@ -6,7 +6,7 @@ import { TripStatTable } from '@/features/trip/trip-stat-table';
 import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
-import { DashboardMonth, PaginationCollection, Trip } from '@/types/model';
+import { MonthItem, PaginationCollection, Trip } from '@/types/model';
 import { Head } from '@inertiajs/react';
 import { FC } from 'react';
 
@@ -24,7 +24,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 const title = 'Trajet';
 
 type Props = {
-    months: DashboardMonth[];
+    months: MonthItem[];
     years: Array<string>;
     defaultYear: string;
     defaultMonth: string;
@@ -40,7 +40,7 @@ const Page: FC<Props> = ({
     defaultMonth,
     trips,
     defaultItinerary,
-    sumRevenueAndTotalCost
+    sumRevenueAndTotalCost,
 }) => {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>

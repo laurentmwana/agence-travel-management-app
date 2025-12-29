@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\YearMonth;
 use App\Http\Resources\Destination\DestinationItemResource;
 use App\Http\Resources\Itinerary\ItineraryItemResource;
 use App\Http\Resources\Trip\TripItemResource;
@@ -26,7 +27,7 @@ class DashboardController extends Controller
 
       public function index(Request $request)
       {
-            $years = $this->getLastYears();
+            $years = YearMonth::getLastYears();
             $defaultYear = $request->query->get('year', now()->year);
 
             $request->validate(['year' => ['nullable', Rule::in($years)]]);
@@ -45,11 +46,11 @@ class DashboardController extends Controller
 
       public function trip(Request $request)
       {
-            $years = $this->getLastYears();
+            $years = YearMonth::getLastYears();
             $defaultYear = $request->query->get('year', now()->year);
             $defaultMonth = $request->query->get('month', now()->month);
             $defaultItinerary = $request->query->get('itinerary');
-            $months = $this->getLastMonths();
+            $months = YearMonth::getLastMonths();
             $criteria = [];
 
             $request->validate([
@@ -92,11 +93,11 @@ class DashboardController extends Controller
 
       public function itinerary(Request $request)
       {
-            $years = $this->getLastYears();
+            $years = YearMonth::getLastYears();
             $defaultYear = $request->query->get('year', now()->year);
             $defaultMonth = $request->query->get('month', now()->month);
             $defaultType = $request->query->get('type');
-            $months = $this->getLastMonths();
+            $months = YearMonth::getLastMonths();
             $criteria = [];
 
             $request->validate([
@@ -131,8 +132,8 @@ class DashboardController extends Controller
 
       public function destination(Request $request)
       {
-            $years = $this->getLastYears();
-            $months = $this->getLastMonths();
+            $years = YearMonth::getLastYears();
+            $months = YearMonth::getLastMonths();
             $defaultYear = $request->query->get('year', now()->year);
             $defaultMonth = $request->query->get('month', now()->month);
 
@@ -150,32 +151,5 @@ class DashboardController extends Controller
                   'months' => $months,
                   'destinations' => DestinationItemResource::collection($destinations),
             ]);
-      }
-
-      private function getLastYears()
-      {
-            $start = now()->year;
-            $years = [];
-            for ($i = 0; $i < 5; $i++) {
-                  $years[] = $start - $i;
-            }
-            return $years;
-      }
-
-      private function getLastMonths()
-      {
-            $locale = App::getLocale();
-            $months = [];
-            $date = now();
-
-            for ($i = 1; $i <= 12; $i++) {
-                  $d = $date->copy()->month($i);
-                  $months[] = [
-                        'value' => $d->format('m'),
-                        'label' => $d->locale($locale)->translatedFormat('F'),
-                  ];
-            }
-
-            return $months;
       }
 }

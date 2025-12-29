@@ -1,14 +1,14 @@
 'use client';
 
 import { useParams } from '@/hooks/use-params';
-import type { DashboardMonth } from '@/types/model';
+import type { MonthItem } from '@/types/model';
 import { router } from '@inertiajs/react';
 import type React from 'react';
 
 interface DashboardDateFilterProps {
     years: Array<string>;
     defaultYear: string;
-    months: DashboardMonth[];
+    months: MonthItem[];
     defaultMonth: string;
 }
 

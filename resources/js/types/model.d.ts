@@ -83,7 +83,7 @@ export interface DashboardGraphicItem {
     net_profit: number;
 }
 
-export interface DashboardMonth {
+export interface MonthItem {
     label: string;
     value: string;
 }

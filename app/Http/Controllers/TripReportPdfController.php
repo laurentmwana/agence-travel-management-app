@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Trip;
 use App\Services\UseCase\Trip\GetTripUseCase;
 use App\Services\UseCase\Trip\TripItemPdfUseCase;
 

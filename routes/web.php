@@ -7,6 +7,7 @@ use App\Http\Controllers\TaxController;
 use App\Http\Controllers\AcmiController;
 use App\Http\Controllers\TripController;
 use App\Http\Controllers\LiterController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItineraryController;
 use App\Http\Controllers\PassengerController;
@@ -80,6 +81,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('price-acmi', [AcmiController::class, 'index'])->name('acmi.index');
     Route::post('price-acmi/store', [AcmiController::class, 'store'])->name('acmi.store');
     // END ACMI ROUTE 
+
+    Route::get('reports', [ReportController::class, 'index'])
+        ->name('reports.index');
 });
 
 require __DIR__ . '/settings.php';
