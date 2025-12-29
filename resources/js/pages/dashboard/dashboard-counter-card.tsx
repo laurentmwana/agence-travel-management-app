@@ -42,7 +42,7 @@ export const DashboardCounterCard: React.FC<Props> = ({
     } satisfies ChartConfig;
 
     return (
-        <div className="rounded-xl border border-sidebar-border/70 p-4 dark:border-sidebar-border">
+        <div className="bg-card rounded-xl border border-sidebar-border/70 p-4 dark:border-sidebar-border">
             <div className="flex items-center justify-between gap-4">
                 <h2>{title}</h2>
                 <ButtonLink href={moreRoute} variant="outline" size="xs">
