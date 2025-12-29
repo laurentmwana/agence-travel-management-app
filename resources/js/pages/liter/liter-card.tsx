@@ -44,7 +44,7 @@ export const LiterCard: React.FC<Props> = ({ amount }) => {
             </Card>
 
             <DefaultValueForm
-                key="price_unit_liter"
+                fieldKey="price_unit_liter"
                 amount={amount}
                 open={open}
                 setOpen={setOpen}

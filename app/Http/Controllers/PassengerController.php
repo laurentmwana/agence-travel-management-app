@@ -21,11 +21,11 @@ class PassengerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'price_unit_passenger' => 'required|integer|min:1',
+            'price_unit_passenger' => 'required|regex:/^\d+(\.\d+)?$/',
         ]);
 
         $this->passenger->set($request->input('price_unit_passenger', 1));
 
-        return to_route('number-passenger.index')->with('success', __('toast.updated.success'));
+        return to_route('passenger.index')->with('success', __('toast.updated.success'));
     }
 }

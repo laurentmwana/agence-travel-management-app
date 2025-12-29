@@ -81,7 +81,7 @@ export const TripTable: React.FC<TripTableProps> = ({ trips }) => {
                                 <TableCell>{item.duration_hours}</TableCell>
                                 <TableCell>{ago(item.created_at)}</TableCell>
                                 <TableCell>
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex items-center justify-end gap-2">
                                         <CollectionActionUrl
                                             routeDelete={
                                                 trip.destroy({

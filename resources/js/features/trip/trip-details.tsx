@@ -241,6 +241,26 @@ export const TripDetails: React.FC<TripDetailsProps> = ({ trip }) => {
 
                             <div className="flex justify-between">
                                 <span className="text-muted-foreground">
+                                    Nombre de passagers
+                                </span>
+                                <span className="font-medium capitalize">
+                                    {trip.number_of_passenger}
+                                </span>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <span className="text-muted-foreground">
+                                    Total prix passagers
+                                </span>
+                                <span className="font-medium capitalize">
+                                    <PriceHoverCard
+                                        price={trip.total_price_passenger}
+                                    />
+                                </span>
+                            </div>
+
+                            <div className="flex justify-between">
+                                <span className="text-muted-foreground">
                                     Programmé
                                 </span>
                                 <span

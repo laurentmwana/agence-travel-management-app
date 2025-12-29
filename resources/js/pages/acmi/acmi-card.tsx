@@ -44,7 +44,7 @@ export const AcmiCard: React.FC<Props> = ({ amount }) => {
             </Card>
 
             <DefaultValueForm
-                key="price_acmi"
+                fieldKey="price_acmi"
                 amount={amount}
                 open={open}
                 setOpen={setOpen}

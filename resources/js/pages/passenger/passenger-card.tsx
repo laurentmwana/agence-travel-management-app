@@ -44,7 +44,7 @@ export const PassengerCard: React.FC<Props> = ({ amount }) => {
             </Card>
 
             <DefaultValueForm
-                key="price_unit_passenger"
+                fieldKey="price_unit_passenger"
                 amount={amount}
                 open={open}
                 setOpen={setOpen}

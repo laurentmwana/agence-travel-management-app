@@ -15,17 +15,11 @@ import React, { FormEvent } from 'react';
 
 type KeyType = 'price_unit_liter' | 'price_acmi' | 'price_unit_passenger';
 
-const keys: KeyType[] = [
-    'price_acmi',
-    'price_unit_liter',
-    'price_unit_passenger',
-];
-
 interface DefaultValueFormProps {
     amount: number;
     open: boolean;
     setOpen: (v: boolean) => void;
-    key: 'price_unit_liter' | 'price_acmi' | 'price_unit_passenger';
+    fieldKey: KeyType;
     url: string;
     title: string;
 }
@@ -34,7 +28,7 @@ export const DefaultValueForm: React.FC<DefaultValueFormProps> = ({
     amount,
     open,
     setOpen,
-    key,
+    fieldKey,
     url,
     title,
 }) => {
@@ -47,50 +41,45 @@ export const DefaultValueForm: React.FC<DefaultValueFormProps> = ({
 
     const formObject = {
         price_unit_liter: {
-            defaultValue: amount,
             data: data.price_unit_liter ?? 0,
             error: errors.price_unit_liter,
-            onchange: (v: number) => setData('price_unit_liter', v),
+            onChange: (v: number) => setData('price_unit_liter', v),
         },
-
         price_acmi: {
-            defaultValue: amount,
             data: data.price_acmi ?? 0,
             error: errors.price_acmi,
-            onchange: (v: number) => setData('price_acmi', v),
+            onChange: (v: number) => setData('price_acmi', v),
         },
         price_unit_passenger: {
-            defaultValue: amount,
             data: data.price_unit_passenger ?? 0,
             error: errors.price_unit_passenger,
-            onchange: (v: number) => setData('price_unit_passenger', v),
+            onChange: (v: number) => setData('price_unit_passenger', v),
         },
     };
 
-    const form = formObject[key];
+    const form = formObject[fieldKey];
 
     const onCloseModal = () => {
         setOpen(false);
         resetAndClearErrors();
-
-        setData('price_acmi', 0);
-        setData('price_unit_liter', 0);
-        setData('price_unit_passenger', 0);
+        setData({
+            price_acmi: 0,
+            price_unit_liter: 0,
+            price_unit_passenger: 0,
+        });
     };
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         post(url, {
-            onSuccess: () => {
-                onCloseModal();
-            },
+            onSuccess: onCloseModal,
             preserveScroll: true,
             preserveState: true,
         });
     };
 
     return (
-        <Dialog open={open} onOpenChange={() => onCloseModal()}>
+        <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{title}</DialogTitle>
@@ -99,12 +88,15 @@ export const DefaultValueForm: React.FC<DefaultValueFormProps> = ({
                 <form onSubmit={onSubmit}>
                     <div className="grid gap-4 py-4">
                         <div className="grid w-full gap-2">
-                            <Label htmlFor={key}>Montant (en $) :</Label>
+                            <Label htmlFor={fieldKey}>Montant (en $) :</Label>
+
                             <InputDecimal
+                                id={fieldKey}
                                 className="w-full"
                                 value={form.data}
-                                onChange={form.onchange}
+                                onChange={form.onChange}
                             />
+
                             <InputError message={form.error} />
                         </div>
 
