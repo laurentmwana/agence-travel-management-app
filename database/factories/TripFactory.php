@@ -12,6 +12,7 @@ class TripFactory extends Factory
     private const PRICE_UNIT_LITER = 0.7;
     private const ACMI_PER_HOURS = 2100.0;
     private const TOTAL_TAX = 158.52;
+    private const PRICE_UNIT_PASSENGER = 140;
 
     /**
      * Define the model's default state.
@@ -32,6 +33,8 @@ class TripFactory extends Factory
         $fuelPrice = self::PRICE_UNIT_LITER * $fuelQuantity;
         $totalCost = $acmi + $fuelPrice + self::TOTAL_TAX + $totalExpense + $affretementTotal;
         $netProfit = $affretementTotal - $acmi - $fuelPrice - self::TOTAL_TAX;
+        $numberOfPassenger = fake()->randomDigit();
+        $totalPricePassenger = $numberOfPassenger * self::PRICE_UNIT_PASSENGER;
 
         return [
             'perfomed_at' => fake()->dateTime(),
@@ -46,6 +49,8 @@ class TripFactory extends Factory
             'net_loss' => $netProfit < 0 ? $netProfit : 0,
             'fuel_quantity' => $fuelQuantity,
             'fuel_price' => $fuelPrice,
+            'number_of_passenger' => $numberOfPassenger,
+            'total_price_passenger' => $totalPricePassenger,
             'other_expenses' => $otherExpenses,
             'total_tax' => self::TOTAL_TAX,
         ];

@@ -26,7 +26,8 @@ class Trip extends Model
         'total_expenses',
         'net_loss',
         'affretements',
-        'number_of_passenger'
+        'number_of_passenger',
+        'total_price_passenger'
     ];
 
     protected $casts = [
