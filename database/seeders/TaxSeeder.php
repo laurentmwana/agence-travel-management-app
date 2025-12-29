@@ -10,20 +10,40 @@ class TaxSeeder extends Seeder
 {
     private const TAXES = [
         [
-            'name' => 'route',
+            'name' => 'Route',
             'amount' => 38.24,
         ],
         [
-            'name' => 'stationnement',
+            'name' => 'Stationnement',
             'amount' => 124,
         ],
         [
-            'name' => 'attérrisage',
+            'name' => 'Attérrissage',
             'amount' => 20.48
         ],
         [
-            'name' => 'formulaire',
+            'name' => 'Formulaire',
             'amount' => 60,
+        ],
+
+        [
+            'name' => 'Agent de Sécurité',
+            'amount' => 20,
+        ],
+
+        [
+            'name' => 'Transport Agent',
+            'amount' => 25,
+        ],
+
+        [
+            'name' => 'Carburant Voiture',
+            'amount' => 20,
+        ],
+
+        [
+            'name' => 'Cathering',
+            'amount' => 100,
         ]
     ];
 
