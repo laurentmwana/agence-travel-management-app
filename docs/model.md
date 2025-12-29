@@ -191,8 +191,42 @@ User ───< Booking >── Ticket
 
 1. Accountant opens dashboard
 2. System shows:
+    - total tickets sold
+    - revenue
+    - commissions
+    - provider payouts
 
-   * total tickets sold
-   * revenue
-   * commissions
-   * provider payouts
+public function generateTripsSummary(Request $request)
+{
+$year = $request->year;
+$month = $request->month;
+$day = $request->day;
+
+    $query = Trip::with(['itinerary', 'otherExpenses', 'affretements'])
+                ->when($year, fn($q) => $q->whereYear('perfomed_at', $year))
+                ->when($month, fn($q) => $q->whereMonth('perfomed_at', $month))
+                ->when($day, fn($q) => $q->whereDay('perfomed_at', $day))
+                ->get();
+
+    // Calculs des sommes totales UNIQUEMENT
+    $totalTrips = $query->count();
+    $totalPassengers = $query->sum('number_of_passengers');
+    $totalPassengerRevenue = $query->sum('total_price_passenger');
+    $totalAcmis = $query->sum('acmi');
+    $totalTaxes = $query->sum('total_tax');
+    $totalFuelCost = $query->sum('fuel_quantity') * $query->avg('fuel_price');
+    $totalAffretements = $query->sum('affretement_total');
+    $totalExpenses = $query->sum('total_expenses');
+    $totalProfit = $query->sum('net_profit');
+
+    $periodTitle = trim("{$day ?? ''}/{$month ?? ''}/{$year ?? ''}", '/');
+
+    $pdf = PDF::loadView('reports.trips-summary', compact(
+        'totalTrips', 'totalPassengers', 'totalPassengerRevenue',
+        'totalAcmis', 'totalTaxes', 'totalFuelCost',
+        'totalAffretements', 'totalExpenses', 'totalProfit', 'periodTitle'
+    ));
+
+    return $pdf->download("resume-voyages-{$year}-{$month}-{$day}.pdf");
+
+}

@@ -12,10 +12,29 @@
             color: #000; 
             width: 100%;
         }
-        .header {
+        .company-header {
+            text-align: center;
+            margin-bottom: 20px;
+            page-break-after: avoid;
+        }
+        .company-logo {
+            max-width: 120px;
+            max-height: 60px;
+            margin-bottom: 10px;
+        }
+        .company-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .company-address {
+            font-size: 11px;
+            margin: 0;
+        }
+        .main-header {
             text-align: center;
             border-bottom: 3px solid #000;
-            padding: 30px 20px 20px;
+            padding: 20px 20px 20px;
             margin-bottom: 30px;
             page-break-after: avoid;
         }
@@ -101,14 +120,20 @@
             padding-top: 20px;
             page-break-before: always;
         }
-
         .text-center { text-align: center; }
         .text-left { text-align: left; }
         .text-end { text-align: end; }
     </style>
 </head>
 <body>
-    <div class="header">
+    <!-- En-tête entreprise -->
+    <div class="company-header">
+        <img src="/favicon.ico" alt="Logo" class="company-logo">
+        <div class="company-name">VOTRE ENTREPRISE AVIATION</div>
+        <div class="company-address">123 Avenue de l'Aviation, Kinshasa, RDC<br>Tél: +243 XXX XXX XXX | Email: contact@votreentreprise.cd</div>
+    </div>
+
+    <div class="main-header">
         <h1>RAPPORT DE VOYAGE</h1>
         <table>
             <thead>
@@ -118,6 +143,8 @@
             <tr><td>N° Voyage</td><td class="table-cell">{{ $trip['id'] ?? 'N/A' }}</td></tr>
             <tr><td>Date</td><td class="table-cell">{{ \Carbon\Carbon::parse($trip['perfomed_at'] ?? now())->format('d/m/Y H:i') }}</td></tr>
             <tr><td>Durée</td><td class="table-cell">{{ number_format($trip['duration_hours'] ?? 0, 0) }} h</td></tr>
+            <tr><td>Nombre de passagers</td><td class="table-cell">{{ number_format($trip['number_of_passenger'] ?? 0, 0) }}</td></tr>
+            <tr><td>Prix total passager</td><td class="table-cell">{{ number_format($trip['total_price_passenger'] ?? 0, 0) }} $</td></tr>
             <tr><td>ACMI</td><td class="table-cell">{{ number_format($trip['acmi'] ?? 0, 0) }} $</td></tr>
             <tr><td>Taxes</td><td class="table-cell">{{ number_format($trip['total_tax'] ?? 0, 0) }} $</td></tr>
             </tbody>

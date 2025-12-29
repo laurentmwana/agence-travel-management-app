@@ -1,5 +1,5 @@
 import { Checkbox } from '@/components/ui/checkbox';
-import { DatePicker } from '@/components/ui/date-picker';
+import { DateOnlyPicker } from '@/components/ui/date-only-picker';
 import { Label } from '@/components/ui/label';
 import { useParams } from '@/hooks/use-params';
 import { router } from '@inertiajs/react';
@@ -13,14 +13,23 @@ export const ReportFormOrder: React.FC<ReportFormOrderProps> = ({
     defaultDate,
 }) => {
     const url = window.location.pathname;
-    const { mergeParams } = useParams();
+    const { mergeParams, params, setParams } = useParams<{
+        onlyMonth?: string;
+        onlyYear?: string;
+    }>();
 
-    const [onlyMonth, setOnlyMonth] = useState<boolean>(false);
+    const [onlyMonth, setOnlyMonth] = useState<boolean>(
+        params.onlyMonth === '1' || params.onlyMonth === 'true',
+    );
+    const [onlyYear, setOnlyYear] = useState<boolean>(
+        params.onlyYear === '1' || params.onlyYear === 'true',
+    );
 
     return (
         <div className="flex flex-col gap-4">
-            <DatePicker
+            <DateOnlyPicker
                 onlyMonth={onlyMonth}
+                onlyYear={onlyYear}
                 value={defaultDate}
                 onChange={(value) => {
                     if (value) {
@@ -34,7 +43,32 @@ export const ReportFormOrder: React.FC<ReportFormOrderProps> = ({
                 <Checkbox
                     id="only_month"
                     checked={onlyMonth}
-                    onCheckedChange={(v) => setOnlyMonth(v as boolean)}
+                    onCheckedChange={(v) => {
+                        setOnlyMonth(v as boolean);
+                        router.get(
+                            mergeParams(url, {
+                                ...params,
+                                onlyMonth: v ? '1' : '0',
+                            }),
+                        );
+                    }}
+                />
+            </div>
+
+            <div>
+                <Label htmlFor="only_year">Juste l'année </Label>
+                <Checkbox
+                    id="only_year"
+                    checked={onlyYear}
+                    onCheckedChange={(v) => {
+                        setOnlyYear(v as boolean);
+                        router.get(
+                            mergeParams(url, {
+                                ...params,
+                                onlyYear: v ? '1' : '0',
+                            }),
+                        );
+                    }}
                 />
             </div>
         </div>
