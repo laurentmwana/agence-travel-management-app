@@ -17,4 +17,9 @@ class ReportController extends Controller
             'defaultDate' => $defaultDate,
         ]);
     }
+
+    public function store()
+    {
+        
+    }
 }

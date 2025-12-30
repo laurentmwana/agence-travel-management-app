@@ -82,8 +82,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('price-acmi/store', [AcmiController::class, 'store'])->name('acmi.store');
     // END ACMI ROUTE 
 
-    Route::get('reports', [ReportController::class, 'index'])
+    Route::get('report', [ReportController::class, 'index'])
         ->name('reports.index');
+
+    Route::get('report/store', [ReportController::class, 'store'])
+        ->name('reports.store');
 });
 
 require __DIR__ . '/settings.php';

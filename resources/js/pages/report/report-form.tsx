@@ -1,5 +1,7 @@
+import { ButtonLink } from '@/components/ui/button-link';
 import { ChipsSelector } from '@/components/ui/chips-select';
 import { useParams } from '@/hooks/use-params';
+import reports from '@/routes/reports';
 import { router } from '@inertiajs/react';
 import React from 'react';
 
@@ -17,11 +19,19 @@ interface ReportFormProps {
 }
 
 export const ReportForm: React.FC<ReportFormProps> = ({ tag, url }) => {
-    const { mergeParams } = useParams();
+    const { mergeParams, params } = useParams<{
+        tag?: string;
+        onlyMonth?: string;
+        onlyYear?: string;
+    }>();
+
+    const isDisabled =
+        params.tag !== undefined && items.some((c) => c.id !== params.tag);
 
     return (
         <div>
             <ChipsSelector
+                disabled={isDisabled}
                 onSelectionChange={(v) =>
                     router.get(mergeParams(url, { tag: v as string }))
                 }
@@ -36,6 +46,16 @@ export const ReportForm: React.FC<ReportFormProps> = ({ tag, url }) => {
                 searchable={false}
                 selectedValues={tag}
             />
+
+            <ButtonLink
+                disabled={isDisabled}
+                href={reports.store({
+                    mergeQuery: { tag: tag },
+                }).url}
+                native={true}
+            >
+                Télécharger le rapport
+            </ButtonLink>
         </div>
     );
 };

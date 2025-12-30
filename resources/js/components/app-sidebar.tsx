@@ -15,14 +15,12 @@ import destination from '@/routes/destination';
 import itinerary from '@/routes/itinerary';
 import liter from '@/routes/liter';
 import passenger from '@/routes/passenger';
-import reports from '@/routes/reports';
 import tax from '@/routes/tax';
 import trip from '@/routes/trip';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import {
     DollarSign,
-    DownloadCloud,
     Fuel,
     LayoutGrid,
     Map,
@@ -80,11 +78,11 @@ const mainNavItems: NavItem[] = [
         icon: PlaneTakeoff,
     },
 
-    {
-        title: 'Rapports',
-        href: reports.index(),
-        icon: DownloadCloud,
-    },
+    // {
+    //     title: 'Rapports',
+    //     href: reports.index(),
+    //     icon: DownloadCloud,
+    // },
 ];
 
 export function AppSidebar() {
