@@ -26,7 +26,7 @@ class TripRequest extends FormRequest
     {
         $jsonRule = [
             'name' => 'required|string|min:0',
-            'amount' => 'required|regex:/^\d+(\.\d+)?$/|min:0',
+            'amount' => 'required|regex:/^(?!0(\.0+)?$)\d+(\.\d+)?$/',
         ];
 
         return [

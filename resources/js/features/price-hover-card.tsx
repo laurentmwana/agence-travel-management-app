@@ -5,28 +5,48 @@ import {
     HoverCardTrigger,
 } from '@/components/ui/hover-card';
 import { formatLargeNumber } from '@/lib/number';
-import React from 'react';
+import type React from 'react';
 
 interface Props {
     price: number;
     suffix?: string;
+    locale?: string;
+    className?: string;
 }
 
-export const PriceHoverCard: React.FC<Props> = ({ price, suffix = '$' }) => {
+export const PriceHoverCard: React.FC<Props> = ({
+    price,
+    suffix = '$',
+    locale = 'en-US',
+    className,
+}) => {
+    const formattedShort = formatLargeNumber(price);
+    const formattedFull = new Intl.NumberFormat(locale, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(price);
+
     return (
-        <div>
-            <HoverCard>
-                <HoverCardTrigger asChild>
-                    <Button className="ps-0" variant="link">
-                        {formatLargeNumber(price)} {suffix}
-                    </Button>
-                </HoverCardTrigger>
-                <HoverCardContent className="w-80">
-                    <p className="mb-2 text-center text-sm font-semibold">
-                        {price} {suffix}
+        <HoverCard>
+            <HoverCardTrigger asChild>
+                <Button
+                    className={`h-auto p-0 font-semibold ${className}`}
+                    variant="link"
+                    aria-label={`Price: ${formattedFull} ${suffix}`}
+                >
+                    {formattedShort} {suffix}
+                </Button>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-auto min-w-[200px]">
+                <div className="space-y-1">
+                    <p className="text-xs text-muted-foreground">
+                        Exact amount
                     </p>
-                </HoverCardContent>
-            </HoverCard>
-        </div>
+                    <p className="text-xl font-bold tabular-nums">
+                        {formattedFull} {suffix}
+                    </p>
+                </div>
+            </HoverCardContent>
+        </HoverCard>
     );
 };

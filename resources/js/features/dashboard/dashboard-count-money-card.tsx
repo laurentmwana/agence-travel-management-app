@@ -5,8 +5,8 @@ import {
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
-import { formatLargeNumber } from '@/lib/number';
 import type React from 'react';
+import { PriceHoverCard } from '../price-hover-card';
 
 interface DashboardCountMoneyCardProps {
     title: string;
@@ -48,7 +48,7 @@ export const DashboardCountMoneyCard: React.FC<
                                       : 'Capital (aucune perte)'}
                             </p>
 
-                            <h2
+                            <PriceHoverCard
                                 className={`text-4xl font-bold tabular-nums ${
                                     isProfit
                                         ? 'text-green-600 dark:text-green-500'
@@ -56,9 +56,8 @@ export const DashboardCountMoneyCard: React.FC<
                                           ? 'text-red-600 dark:text-red-500'
                                           : 'text-blue-600 dark:text-blue-400'
                                 }`}
-                            >
-                                {formatLargeNumber(netProfit)}
-                            </h2>
+                                price={netProfit}
+                            />
 
                             {/* BADGE */}
                             {netProfit !== 0 && (
@@ -125,9 +124,10 @@ export const DashboardCountMoneyCard: React.FC<
                                         Revenu total
                                     </span>
                                 </div>
-                                <span className="text-base font-semibold tabular-nums">
-                                    {formatLargeNumber(totalRevenue)}
-                                </span>
+                                <PriceHoverCard
+                                    price={totalRevenue}
+                                    className="text-base font-semibold tabular-nums"
+                                />
                             </div>
 
                             {/* Coûts */}
@@ -138,9 +138,10 @@ export const DashboardCountMoneyCard: React.FC<
                                         Coûts totaux
                                     </span>
                                 </div>
-                                <span className="text-base font-semibold tabular-nums">
-                                    {formatLargeNumber(totalCost)}
-                                </span>
+                                <PriceHoverCard
+                                    price={totalCost}
+                                    className="text-base font-semibold tabular-nums"
+                                />
                             </div>
 
                             {/* PROGRESS BAR */}
